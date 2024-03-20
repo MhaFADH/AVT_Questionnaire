@@ -11,22 +11,34 @@ import { useState } from "react";
 import CustomSelect from "./components/CustomSelect";
 import clsx from "clsx";
 import PickList from "./components/PickList";
+import { TextareaAutosize } from "@mui/base";
 
 const GridRowsProp = [
-  { id: 1, col1: "Hello" },
-  { id: 2, col1: "DataGridPro" },
-  { id: 3, col1: "MUI" },
+  { id: 1, col1: "User 1" },
+  { id: 2, col1: "User 2" },
+  { id: 3, col1: "User 3" },
+  { id: 4, col1: "User 4" },
+  { id: 5, col1: "User 5" },
+  { id: 6, col1: "User 6" },
+  { id: 7, col1: "User 7" },
+  { id: 8, col1: "User 8" },
+  { id: 9, col1: "User 9" },
+  { id: 10, col1: "User 10" },
 ];
 
-const GridColDef = [{ field: "col1", headerName: "Column 1", width: 150 }];
+const GridColDef = [{ field: "col1", headerName: "Users", width: 150 }];
 
 function App() {
   const [modelUtil, setModelUtil] = useState("");
   const [typeQuest, setTypeQuest] = useState("");
+  const [txtEntete, setTxtEntete] = useState("");
+  const [txtIntro, setTxtIntro] = useState("");
+  const [txtRemerciement, setTxtRemerciement] = useState("");
   const [langue, setLangue] = useState("");
   const [qrCode, setQrCode] = useState("");
   const [anchorEl, setAnchorEl] = useState("");
   const [pickList, setPickList] = useState("");
+  const [nbQuest, setNbQuest] = useState("");
 
   return (
     <>
@@ -36,90 +48,128 @@ function App() {
           anchorEl ? " blur-sm" : "blur-none"
         )}
       >
-        <form>
-          <div className=" flex flex-col bg-slate-100 p-7 rounded-2xl mx-10 shadow-2xl">
-            <h1 className=" text-xl mb-9">Description</h1>
-            <div className="flex">
-              <div className=" flex flex-col w-full items-center">
-                <div className="w-3/5  space-y-3">
-                  {/* <PickList
-                    value={pickList}
-                    setValue={setPickList}
-                    setAnchorEl={setAnchorEl}
-                    data={GridRowsProp}
-                    columns={GridColDef}
-                    concernedCol="col1"
-                    label={"Langue"}
-                  /> */}
-                  <FormControl fullWidth>
-                    <TextField
-                      variant="outlined"
-                      size="small"
-                      label="Texte d'entête"
-                    />
-                  </FormControl>
-                  <FormControl fullWidth size="small">
-                    <CustomSelect
-                      label="Evaluation"
-                      displayValues={["hey", "tt", "bjr", "Vide"]}
-                      value={typeQuest}
-                      setValue={setTypeQuest}
-                    />
-                  </FormControl>
-                  <FormControl fullWidth size="small">
-                    <CustomSelect
-                      label="Mode d'utilisation"
-                      displayValues={["hey", "tt", "bjr", "Vide"]}
-                      value={modelUtil}
-                      setValue={setModelUtil}
-                    />
-                  </FormControl>
-                  <FormControl fullWidth size="small">
-                    <CustomSelect
-                      label="Langue"
-                      displayValues={["Français", "Arabe", "Anglais", "Vide"]}
-                      value={langue}
-                      setValue={setLangue}
-                    />
-                  </FormControl>
-                </div>
+        <div className=" flex flex-col bg-slate-100 p-7 rounded-2xl mx-10 shadow-2xl">
+          <h1 className=" text-xl mb-9">Description</h1>
+          <div className="flex">
+            <div className=" flex flex-col w-full items-center">
+              <div className="w-3/5  space-y-3">
+                <FormControl fullWidth>
+                  <TextField
+                    variant="outlined"
+                    size="small"
+                    label="Texte d'entête"
+                    value={txtEntete}
+                    onChange={(val) => setTxtEntete(val.target.value)}
+                  />
+                </FormControl>
+                <FormControl fullWidth size="small">
+                  <CustomSelect
+                    label="Evaluation"
+                    displayValues={["hey", "tt", "bjr", "Vide"]}
+                    value={typeQuest}
+                    setValue={setTypeQuest}
+                  />
+                </FormControl>
+                <FormControl fullWidth size="small">
+                  <CustomSelect
+                    label="Mode d'utilisation"
+                    displayValues={["hey", "tt", "bjr", "Vide"]}
+                    value={modelUtil}
+                    setValue={setModelUtil}
+                  />
+                </FormControl>
+                <FormControl fullWidth size="small">
+                  <CustomSelect
+                    label="Langue"
+                    displayValues={["Français", "Arabe", "Anglais", "Vide"]}
+                    value={langue}
+                    setValue={setLangue}
+                  />
+                </FormControl>
               </div>
-              <div className="flex flex-col w-full items-center">
-                <div className="w-3/5  space-y-3">
-                  <FormControl fullWidth>
-                    <div className="flex items-center">
-                      <FormLabel className="mr-4">QR Code ?</FormLabel>
-                      <RadioGroup
-                        row={true}
-                        value={qrCode}
-                        onChange={(val) => setQrCode(val.target.value)}
-                      >
-                        <FormControlLabel
-                          value="Oui"
-                          control={<Radio />}
-                          label="Oui"
-                        />
-                        <FormControlLabel
-                          value="Non"
-                          control={<Radio />}
-                          label="Non"
-                        />
-                      </RadioGroup>
-                    </div>
-                  </FormControl>
-                  <FormControl fullWidth>
-                    <TextField
-                      variant="outlined"
-                      size="small"
-                      label="Texte d'entête"
-                      type="number"
-                    />
-                  </FormControl>
-                </div>
+            </div>
+            <div className="flex flex-col w-full items-center">
+              <div className="w-3/5  space-y-3">
+                <FormControl fullWidth>
+                  <div className="flex items-center">
+                    <FormLabel className="mr-4">QR Code ?</FormLabel>
+                    <RadioGroup
+                      row={true}
+                      value={qrCode}
+                      onChange={(val) => setQrCode(val.target.value)}
+                    >
+                      <FormControlLabel
+                        value="Oui"
+                        control={<Radio />}
+                        label="Oui"
+                      />
+                      <FormControlLabel
+                        value="Non"
+                        control={<Radio />}
+                        label="Non"
+                      />
+                    </RadioGroup>
+                  </div>
+                </FormControl>
+                <FormControl fullWidth>
+                  <TextField
+                    variant="outlined"
+                    size="small"
+                    label="Nombre de bonnes réponses requises"
+                    type="number"
+                    value={nbQuest}
+                    onChange={(val) => setNbQuest(val.target.value)}
+                  />
+                </FormControl>
+                <PickList
+                  value={pickList}
+                  setValue={setPickList}
+                  setAnchorEl={setAnchorEl}
+                  data={GridRowsProp}
+                  columns={GridColDef}
+                  concernedCol="col1"
+                  label="Destinataire(s) réponses"
+                />
+                <FormControl fullWidth>
+                  <TextField
+                    variant="outlined"
+                    size="small"
+                    label="Quelle sera la première question ?"
+                    type=""
+                    value={nbQuest}
+                    onChange={(val) => setNbQuest(val.target.value)}
+                  />
+                </FormControl>
               </div>
             </div>
           </div>
-        </form>
+          <div className="flex flex-col w-full items-center mt-4">
+            <div className="w-4/5  space-y-3">
+              <FormControl fullWidth>
+                <TextField
+                  variant="outlined"
+                  size="small"
+                  label="Texte d'introduction"
+                  multiline={true}
+                  type=""
+                  value={txtIntro}
+                  onChange={(val) => setTxtIntro(val.target.value)}
+                />
+              </FormControl>
+              <FormControl fullWidth>
+                <TextField
+                  variant="outlined"
+                  size="small"
+                  label="Texte de remerciement"
+                  multiline={true}
+                  type=""
+                  value={txtRemerciement}
+                  onChange={(val) => setTxtRemerciement(val.target.value)}
+                />
+              </FormControl>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
