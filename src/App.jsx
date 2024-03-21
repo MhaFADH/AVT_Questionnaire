@@ -1,17 +1,17 @@
 import {
   FormControl,
   TextField,
-  Popover,
   FormControlLabel,
   FormLabel,
   RadioGroup,
   Radio,
+  Button,
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import CustomSelect from "./components/CustomSelect";
 import clsx from "clsx";
-import PickList from "./components/PickList";
-import { TextareaAutosize } from "@mui/base";
+import PickListUsers from "./components/PickListUsers";
+import { MdOutlineFileUpload } from "react-icons/md";
 
 const GridRowsProp = [
   { id: 1, col1: "User 1" },
@@ -37,8 +37,10 @@ function App() {
   const [langue, setLangue] = useState("");
   const [qrCode, setQrCode] = useState("");
   const [anchorEl, setAnchorEl] = useState("");
-  const [pickList, setPickList] = useState("");
+  const [pickListUsr, setPickListUsr] = useState([]);
   const [nbQuest, setNbQuest] = useState("");
+  const [files, setFiles] = useState("Aucun fichier");
+  const finput = useRef(null);
 
   return (
     <>
@@ -65,7 +67,12 @@ function App() {
                 <FormControl fullWidth size="small">
                   <CustomSelect
                     label="Evaluation"
-                    displayValues={["hey", "tt", "bjr", "Vide"]}
+                    displayValues={[
+                      "Evaluation 1",
+                      "Evaluation 2",
+                      "Evaluation 3",
+                      "Vide",
+                    ]}
                     value={typeQuest}
                     setValue={setTypeQuest}
                   />
@@ -73,7 +80,7 @@ function App() {
                 <FormControl fullWidth size="small">
                   <CustomSelect
                     label="Mode d'utilisation"
-                    displayValues={["hey", "tt", "bjr", "Vide"]}
+                    displayValues={["Mode 1", "Mode 2", "Mode 3", "Vide"]}
                     value={modelUtil}
                     setValue={setModelUtil}
                   />
@@ -121,9 +128,9 @@ function App() {
                     onChange={(val) => setNbQuest(val.target.value)}
                   />
                 </FormControl>
-                <PickList
-                  value={pickList}
-                  setValue={setPickList}
+                <PickListUsers
+                  value={pickListUsr}
+                  setValue={setPickListUsr}
                   setAnchorEl={setAnchorEl}
                   data={GridRowsProp}
                   columns={GridColDef}
@@ -162,11 +169,35 @@ function App() {
                   size="small"
                   label="Texte de remerciement"
                   multiline={true}
-                  type=""
                   value={txtRemerciement}
                   onChange={(val) => setTxtRemerciement(val.target.value)}
                 />
               </FormControl>
+              <div className="flex relative">
+                <TextField
+                  fullWidth
+                  size="small"
+                  value={files}
+                  disabled
+                ></TextField>
+                <button
+                  className="absolute right-0 top-2.5 mr-3"
+                  variant="contained"
+                  component="label"
+                >
+                  <MdOutlineFileUpload
+                    size={22}
+                    onClick={() => finput.current.click()}
+                  />
+                  <input
+                    ref={finput}
+                    className="hidden"
+                    type="file"
+                    multiple
+                    onChange={(val) => setFiles(val.target.files[0].name)}
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
