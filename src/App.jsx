@@ -5,17 +5,11 @@ import {
   FormLabel,
   RadioGroup,
   Radio,
-  Button,
 } from "@mui/material";
 import { useState, useRef } from "react";
 import CustomSelect from "./components/CustomSelect";
-import clsx from "clsx";
 import PickListUsers from "./components/PickListUsers";
 import { MdOutlineFileUpload } from "react-icons/md";
-import FormTemplate from "./components/FormTemplate";
-import ColContainer from "./components/ColMainContainer";
-import ColMainContainer from "./components/ColMainContainer";
-import Col from "./components/Col";
 
 const GridRowsProp = [
   { id: 1, col1: "User 1" },
@@ -47,169 +41,220 @@ function App() {
   const finput = useRef(null);
 
   return (
-    <>
-      <FormTemplate title="Description" blurAnchor={anchorEl}>
-        <ColMainContainer>
-          <ColContainer>
-            <Col>
-              <FormControl fullWidth>
-                <TextField
-                  variant="outlined"
-                  size="small"
-                  label="Texte d'entête"
-                  value={txtEntete}
-                  onChange={(val) => setTxtEntete(val.target.value)}
+    <div className="flex flex-col justify-start text-center h-screen">
+      <div className="rounded-2xl m-16 bg-gray-100">
+        <table className=" text-center m-10 " cellPadding={3} width="100%">
+          <tbody>
+            <tr>
+              <td class="tableHeader1" colspan="3">
+                Détail
+              </td>
+            </tr>
+            <tr>
+              <td valign="top" width="49%"></td>
+              <td valign="top" width="2%"></td>
+              <td valign="top" width="49%"></td>
+            </tr>
+            <tr>
+              <td>
+                <FormControl fullWidth>
+                  <TextField
+                    variant="outlined"
+                    size="small"
+                    label="Texte d'entête"
+                    value={txtEntete}
+                    onChange={(val) => setTxtEntete(val.target.value)}
+                  />
+                </FormControl>
+              </td>
+              <td></td>
+              <td>
+                <FormControl fullWidth size="small">
+                  <CustomSelect
+                    label="Evaluation"
+                    displayValues={[
+                      "Evaluation 1",
+                      "Evaluation 2",
+                      "Evaluation 3",
+                      "Vide",
+                    ]}
+                    value={typeQuest}
+                    setValue={setTypeQuest}
+                  />
+                </FormControl>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <FormControl fullWidth size="small">
+                  <CustomSelect
+                    label="Mode d'utilisation"
+                    displayValues={["Mode 1", "Mode 2", "Mode 3", "Vide"]}
+                    value={modelUtil}
+                    setValue={setModelUtil}
+                  />
+                </FormControl>
+              </td>
+              <td></td>
+              <td>
+                <FormControl fullWidth size="small">
+                  <CustomSelect
+                    label="Langue"
+                    displayValues={["Français", "Arabe", "Anglais", "Vide"]}
+                    value={langue}
+                    setValue={setLangue}
+                  />
+                </FormControl>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <FormControl fullWidth>
+                  <div className="flex items-center">
+                    <FormLabel className="mr-4">QR Code ?</FormLabel>
+                    <RadioGroup
+                      row={true}
+                      value={qrCode}
+                      onChange={(val) => setQrCode(val.target.value)}
+                    >
+                      <FormControlLabel
+                        value="Oui"
+                        control={<Radio />}
+                        label="Oui"
+                      />
+                      <FormControlLabel
+                        value="Non"
+                        control={<Radio />}
+                        label="Non"
+                      />
+                    </RadioGroup>
+                  </div>
+                </FormControl>
+              </td>
+              <td></td>
+              <td>
+                <FormControl fullWidth>
+                  <TextField
+                    variant="outlined"
+                    size="small"
+                    label="Nombre de bonnes réponses requises"
+                    type="number"
+                    value={nbQuest}
+                    onChange={(val) => setNbQuest(val.target.value)}
+                  />
+                </FormControl>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <PickListUsers
+                  value={pickListUsr}
+                  setValue={setPickListUsr}
+                  setAnchorEl={setAnchorEl}
+                  data={GridRowsProp}
+                  columns={GridColDef}
+                  concernedCol="col1"
+                  label="Destinataire(s) réponses"
                 />
-              </FormControl>
-              <FormControl fullWidth size="small">
-                <CustomSelect
-                  label="Evaluation"
-                  displayValues={[
-                    "Evaluation 1",
-                    "Evaluation 2",
-                    "Evaluation 3",
-                    "Vide",
-                  ]}
-                  value={typeQuest}
-                  setValue={setTypeQuest}
-                />
-              </FormControl>
-              <FormControl fullWidth size="small">
-                <CustomSelect
-                  label="Mode d'utilisation"
-                  displayValues={["Mode 1", "Mode 2", "Mode 3", "Vide"]}
-                  value={modelUtil}
-                  setValue={setModelUtil}
-                />
-              </FormControl>
-              <FormControl fullWidth size="small">
-                <CustomSelect
-                  label="Langue"
-                  displayValues={["Français", "Arabe", "Anglais", "Vide"]}
-                  value={langue}
-                  setValue={setLangue}
-                />
-              </FormControl>
-            </Col>
-          </ColContainer>
-          <ColContainer>
-            <Col>
-              <FormControl fullWidth>
-                <div className="flex items-center">
-                  <FormLabel className="mr-4">QR Code ?</FormLabel>
-                  <RadioGroup
-                    row={true}
-                    value={qrCode}
-                    onChange={(val) => setQrCode(val.target.value)}
+              </td>
+              <td></td>
+              <td>
+                <FormControl fullWidth>
+                  <TextField
+                    variant="outlined"
+                    size="small"
+                    label="Quelle sera la première question ?"
+                    type=""
+                    value={nbQuest}
+                    onChange={(val) => setNbQuest(val.target.value)}
+                  />
+                </FormControl>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={3}>
+                <FormControl fullWidth>
+                  <TextField
+                    variant="outlined"
+                    size="small"
+                    label="Texte d'introduction"
+                    multiline={true}
+                    type=""
+                    value={txtIntro}
+                    onChange={(val) => setTxtIntro(val.target.value)}
+                  />
+                </FormControl>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td colSpan={3}>
+                <FormControl fullWidth>
+                  <TextField
+                    variant="outlined"
+                    size="small"
+                    label="Texte de remerciement"
+                    multiline={true}
+                    value={txtRemerciement}
+                    onChange={(val) => setTxtRemerciement(val.target.value)}
+                  />
+                </FormControl>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td colSpan={3}>
+                <div className="flex relative">
+                  <TextField
+                    fullWidth
+                    size="small"
+                    value={files}
+                    disabled
+                    multiline
+                  ></TextField>
+                  <button
+                    className="absolute right-0 top-2.5 mr-3"
+                    variant="contained"
+                    component="label"
                   >
-                    <FormControlLabel
-                      value="Oui"
-                      control={<Radio />}
-                      label="Oui"
+                    <MdOutlineFileUpload
+                      size={22}
+                      onClick={() => finput.current.click()}
                     />
-                    <FormControlLabel
-                      value="Non"
-                      control={<Radio />}
-                      label="Non"
-                    />
-                  </RadioGroup>
-                </div>
-              </FormControl>
-              <FormControl fullWidth>
-                <TextField
-                  variant="outlined"
-                  size="small"
-                  label="Nombre de bonnes réponses requises"
-                  type="number"
-                  value={nbQuest}
-                  onChange={(val) => setNbQuest(val.target.value)}
-                />
-              </FormControl>
-              <PickListUsers
-                value={pickListUsr}
-                setValue={setPickListUsr}
-                setAnchorEl={setAnchorEl}
-                data={GridRowsProp}
-                columns={GridColDef}
-                concernedCol="col1"
-                label="Destinataire(s) réponses"
-              />
-              <FormControl fullWidth>
-                <TextField
-                  variant="outlined"
-                  size="small"
-                  label="Quelle sera la première question ?"
-                  type=""
-                  value={nbQuest}
-                  onChange={(val) => setNbQuest(val.target.value)}
-                />
-              </FormControl>
-            </Col>
-          </ColContainer>
-        </ColMainContainer>
-        <div className="flex flex-col w-full items-center mt-4">
-          <div className="w-4/5  space-y-3">
-            <FormControl fullWidth>
-              <TextField
-                variant="outlined"
-                size="small"
-                label="Texte d'introduction"
-                multiline={true}
-                type=""
-                value={txtIntro}
-                onChange={(val) => setTxtIntro(val.target.value)}
-              />
-            </FormControl>
-            <FormControl fullWidth>
-              <TextField
-                variant="outlined"
-                size="small"
-                label="Texte de remerciement"
-                multiline={true}
-                value={txtRemerciement}
-                onChange={(val) => setTxtRemerciement(val.target.value)}
-              />
-            </FormControl>
-            <div className="flex relative">
-              <TextField
-                fullWidth
-                size="small"
-                value={files}
-                disabled
-                multiline
-              ></TextField>
-              <button
-                className="absolute right-0 top-2.5 mr-3"
-                variant="contained"
-                component="label"
-              >
-                <MdOutlineFileUpload
-                  size={22}
-                  onClick={() => finput.current.click()}
-                />
-                <input
-                  ref={finput}
-                  className="hidden"
-                  type="file"
-                  multiple
-                  onChange={(val) => {
-                    console.log(val.target.files[0].name);
+                    <input
+                      ref={finput}
+                      className="hidden"
+                      type="file"
+                      multiple
+                      onChange={(val) => {
+                        console.log(val.target.files[0].name);
 
-                    setFiles(
-                      Object.entries(val.target.files)
-                        .map(([_, value]) => {
-                          return value.name;
-                        })
-                        .join("\n")
-                    );
-                  }}
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </FormTemplate>
-    </>
+                        setFiles(
+                          Object.entries(val.target.files)
+                            .map(([_, value]) => {
+                              return value.name;
+                            })
+                            .join("\n")
+                        );
+                      }}
+                    />
+                  </button>
+                </div>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 
