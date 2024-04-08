@@ -11,6 +11,9 @@ import CustomSelect from "./components/CustomSelect"
 import PickListUsers from "./components/PickListUsers"
 import { MdOutlineFileUpload } from "react-icons/md"
 import clsx from "clsx"
+import CustomTextField from "./components/CustomTextField"
+import CustomNumberField from "./components/CustomNumberField"
+import UploadField from "./components/UploadField"
 
 const GridRowsProp = [
   { id: 1, col1: "User 1" },
@@ -61,15 +64,11 @@ function App() {
               </tr>
               <tr>
                 <td>
-                  <FormControl fullWidth>
-                    <TextField
-                      variant="outlined"
-                      size="small"
-                      label="Texte d'entête"
-                      value={txtEntete}
-                      onChange={(val) => setTxtEntete(val.target.value)}
-                    />
-                  </FormControl>
+                  <CustomTextField
+                    label="Texte d'entête"
+                    getter={txtEntete}
+                    setter={setTxtEntete}
+                  />
                 </td>
                 <td></td>
                 <td>
@@ -137,16 +136,11 @@ function App() {
                 </td>
                 <td></td>
                 <td>
-                  <FormControl fullWidth>
-                    <TextField
-                      variant="outlined"
-                      size="small"
-                      label="Nombre de bonnes réponses requises"
-                      type="number"
-                      value={nbRep}
-                      onChange={(val) => setNbRep(val.target.value)}
-                    />
-                  </FormControl>
+                  <CustomNumberField
+                    getter={nbRep}
+                    setter={setNbRep}
+                    label="Nombre de bonnes réponses requises"
+                  />
                 </td>
               </tr>
               <tr>
@@ -163,16 +157,11 @@ function App() {
                 </td>
                 <td></td>
                 <td>
-                  <FormControl fullWidth>
-                    <TextField
-                      variant="outlined"
-                      size="small"
-                      label="Quelle sera la première question ?"
-                      type=""
-                      value={nbQuest}
-                      onChange={(val) => setNbQuest(val.target.value)}
-                    />
-                  </FormControl>
+                  <CustomTextField
+                    label="Quelle sera la première question ?"
+                    getter={nbQuest}
+                    setter={setNbQuest}
+                  />
                 </td>
               </tr>
               <tr>
@@ -182,68 +171,31 @@ function App() {
               </tr>
               <tr>
                 <td colSpan={3}>
-                  <FormControl fullWidth>
-                    <TextField
-                      variant="outlined"
-                      size="small"
-                      label="Texte d'introduction"
-                      multiline={true}
-                      type=""
-                      value={txtIntro}
-                      onChange={(val) => setTxtIntro(val.target.value)}
-                    />
-                  </FormControl>
+                  <CustomTextField
+                    label="Texte d'introduction"
+                    getter={txtIntro}
+                    setter={setTxtIntro}
+                    multiline={true}
+                  />
                 </td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
                 <td colSpan={3}>
-                  <FormControl fullWidth>
-                    <TextField
-                      variant="outlined"
-                      size="small"
-                      label="Texte de remerciement"
-                      multiline={true}
-                      value={txtRemerciement}
-                      onChange={(val) => setTxtRemerciement(val.target.value)}
-                    />
-                  </FormControl>
+                  <CustomTextField
+                    label="Texte de remerciement"
+                    getter={txtRemerciement}
+                    setter={setTxtRemerciement}
+                    multiline={true}
+                  />
                 </td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
                 <td colSpan={3}>
-                  <div className="flex relative">
-                    <TextField
-                      fullWidth
-                      size="small"
-                      value={files}
-                      disabled
-                      multiline></TextField>
-                    <button className="absolute right-0 top-2.5 mr-3">
-                      <MdOutlineFileUpload
-                        size={22}
-                        onClick={() => finput.current.click()}
-                      />
-                      <input
-                        ref={finput}
-                        className="hidden"
-                        type="file"
-                        multiple
-                        onChange={(val) => {
-                          console.log(val.target.files[0].name)
-
-                          setFiles(
-                            Object.entries(val.target.files)
-                              .map(([_, value]) => value.name)
-                              .join("\n")
-                          )
-                        }}
-                      />
-                    </button>
-                  </div>
+                  <UploadField getter={files} setter={setFiles} />
                 </td>
                 <td></td>
                 <td></td>
