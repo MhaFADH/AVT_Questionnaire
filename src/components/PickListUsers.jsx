@@ -1,7 +1,7 @@
-import { FaUserPlus } from "react-icons/fa";
-import { TextField, Popover, Button } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
-import { useState } from "react";
+import { FaUserPlus } from "react-icons/fa"
+import { TextField, Popover, Button } from "@mui/material"
+import { DataGrid } from "@mui/x-data-grid"
+import { useState } from "react"
 
 const PickListUsers = ({
   value,
@@ -10,32 +10,28 @@ const PickListUsers = ({
   columns,
   concernedCol,
   label,
-  setAnchorEl,
+  setAnchorEl
 }) => {
-  const [rowSelectionModel, setRowSelectionModel] = useState("");
-  const [localAnchorEl, setLocalAnchorEl] = useState("");
-  const [selection, setSelection] = useState([]);
-  const [validatedSelection, setValidatedSelection] = useState([]);
-
+  const [rowSelectionModel, setRowSelectionModel] = useState("")
+  const [localAnchorEl, setLocalAnchorEl] = useState("")
+  const [selection, setSelection] = useState([])
+  const [validatedSelection, setValidatedSelection] = useState([])
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-    setLocalAnchorEl(event.currentTarget);
-  };
-
+    setAnchorEl(event.currentTarget)
+    setLocalAnchorEl(event.currentTarget)
+  }
   const handleClose = () => {
-    setRowSelectionModel(validatedSelection);
-    setAnchorEl(null);
-    setLocalAnchorEl(null);
-  };
-
-  const open = Boolean(localAnchorEl);
-  const id = localAnchorEl ? "simple-popover" : undefined;
-
+    setRowSelectionModel(validatedSelection)
+    setAnchorEl(null)
+    setLocalAnchorEl(null)
+  }
+  const open = Boolean(localAnchorEl)
+  const id = localAnchorEl ?? "simple-popover"
   const handleValidation = () => {
-    setValidatedSelection(rowSelectionModel);
-    setValue(rowSelectionModel.map((val) => data[val - 1][concernedCol]));
-    handleClose();
-  };
+    setValidatedSelection(rowSelectionModel)
+    setValue(rowSelectionModel.map((val) => data[val - 1][concernedCol]))
+    handleClose()
+  }
 
   return (
     <div className="flex relative">
@@ -46,8 +42,7 @@ const PickListUsers = ({
         className=" text-black disabled:text-black"
         placeholder={label}
         fullWidth
-        multiline={true}
-      ></TextField>
+        multiline={true}></TextField>
       <FaUserPlus
         className="hover:bg-slate-100 hover:cursor-pointer hover:animate-pulse absolute right-3 top-2.5"
         onClick={handleClick}
@@ -62,13 +57,11 @@ const PickListUsers = ({
         sx={{
           display: "flex",
           justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+          alignItems: "center"
+        }}>
         <div
           className="flex flex-col justify-center text-center"
-          style={{ height: "100%", minWidth: "100%" }}
-        >
+          style={{ height: "100%", minWidth: "100%" }}>
           <DataGrid
             hideFooterSelectedRowCount={true}
             loading={data.length === 0}
@@ -77,8 +70,8 @@ const PickListUsers = ({
             checkboxSelection
             rowSelectionModel={rowSelectionModel}
             onRowSelectionModelChange={(newRowSelectionModel) => {
-              setRowSelectionModel(newRowSelectionModel);
-              setSelection(newRowSelectionModel);
+              setRowSelectionModel(newRowSelectionModel)
+              setSelection(newRowSelectionModel)
             }}
             rows={data}
             columns={columns}
@@ -94,7 +87,7 @@ const PickListUsers = ({
         </div>
       </Popover>
     </div>
-  );
-};
+  )
+}
 
-export default PickListUsers;
+export default PickListUsers

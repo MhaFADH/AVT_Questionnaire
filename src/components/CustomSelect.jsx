@@ -1,8 +1,12 @@
-import { InputLabel, Select, MenuItem } from "@mui/material";
+import { InputLabel, Select, MenuItem } from "@mui/material"
 
-const CustomSelect = (props) => {
-  const { value, setValue, displayValues, label, ...otherProps } = props;
-
+const CustomSelect = ({
+  value,
+  setValue,
+  displayValues,
+  label,
+  ...otherProps
+}) => {
   return (
     <>
       <InputLabel id={label.replace(" ", "_")}>{label}</InputLabel>
@@ -11,10 +15,9 @@ const CustomSelect = (props) => {
         value={value}
         label={label}
         onChange={(agee) => {
-          setValue(agee.target.value === "Vide" ? null : agee.target.value);
+          setValue(agee.target.value === "Vide" ? null : agee.target.value)
         }}
-        {...otherProps}
-      >
+        {...otherProps}>
         {displayValues.map((value) => (
           <MenuItem key={value} value={value}>
             {value}
@@ -22,7 +25,7 @@ const CustomSelect = (props) => {
         ))}
       </Select>
     </>
-  );
-};
+  )
+}
 
-export default CustomSelect;
+export default CustomSelect
