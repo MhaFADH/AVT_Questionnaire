@@ -1,4 +1,4 @@
-import { InputLabel, Select, MenuItem } from "@mui/material"
+import { InputLabel, Select, MenuItem, FormControl } from "@mui/material"
 
 const CustomSelect = ({
   value,
@@ -8,21 +8,23 @@ const CustomSelect = ({
   ...otherProps
 }) => (
   <>
-    <InputLabel id={label.replace(" ", "_")}>{label}</InputLabel>
-    <Select
-      labelId="TypeLabel"
-      value={value}
-      label={label}
-      onChange={(agee) => {
-        setValue(agee.target.value === "Vide" ? null : agee.target.value)
-      }}
-      {...otherProps}>
-      {displayValues.map((val) => (
-        <MenuItem key={val} value={val}>
-          {val}
-        </MenuItem>
-      ))}
-    </Select>
+    <FormControl fullWidth size="small">
+      <InputLabel id={label.replace(" ", "_")}>{label}</InputLabel>
+      <Select
+        labelId="TypeLabel"
+        value={value}
+        label={label}
+        onChange={(agee) => {
+          setValue(agee.target.value === "Vide" ? null : agee.target.value)
+        }}
+        {...otherProps}>
+        {displayValues.map((val) => (
+          <MenuItem key={val} value={val}>
+            {val}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   </>
 )
 

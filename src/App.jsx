@@ -1,19 +1,12 @@
-import {
-  FormControl,
-  TextField,
-  FormControlLabel,
-  FormLabel,
-  RadioGroup,
-  Radio
-} from "@mui/material"
-import { useState, useRef } from "react"
+import { useState } from "react"
 import CustomSelect from "./components/CustomSelect"
 import PickListUsers from "./components/PickListUsers"
-import { MdOutlineFileUpload } from "react-icons/md"
 import clsx from "clsx"
 import CustomTextField from "./components/CustomTextField"
 import CustomNumberField from "./components/CustomNumberField"
 import UploadField from "./components/UploadField"
+import CustomRadioInline from "./components/CustomRadioInline"
+import RadioOption from "./components/RadioOption"
 
 const GridRowsProp = [
   { id: 1, col1: "User 1" },
@@ -42,7 +35,6 @@ function App() {
   const [nbQuest, setNbQuest] = useState("")
   const [nbRep, setNbRep] = useState("")
   const [files, setFiles] = useState("Aucun fichier")
-  const finput = useRef(null)
 
   return (
     <div
@@ -72,67 +64,48 @@ function App() {
                 </td>
                 <td></td>
                 <td>
-                  <FormControl fullWidth size="small">
-                    <CustomSelect
-                      label="Evaluation"
-                      displayValues={[
-                        "Evaluation 1",
-                        "Evaluation 2",
-                        "Evaluation 3",
-                        "Vide"
-                      ]}
-                      value={typeQuest}
-                      setValue={setTypeQuest}
-                    />
-                  </FormControl>
+                  <CustomSelect
+                    label="Evaluation"
+                    displayValues={[
+                      "Evaluation 1",
+                      "Evaluation 2",
+                      "Evaluation 3",
+                      "Vide"
+                    ]}
+                    value={typeQuest}
+                    setValue={setTypeQuest}
+                  />
                 </td>
               </tr>
 
               <tr>
                 <td>
-                  <FormControl fullWidth size="small">
-                    <CustomSelect
-                      label="Mode d'utilisation"
-                      displayValues={["Mode 1", "Mode 2", "Mode 3", "Vide"]}
-                      value={modelUtil}
-                      setValue={setModelUtil}
-                    />
-                  </FormControl>
+                  <CustomSelect
+                    label="Mode d'utilisation"
+                    displayValues={["Mode 1", "Mode 2", "Mode 3", "Vide"]}
+                    value={modelUtil}
+                    setValue={setModelUtil}
+                  />
                 </td>
                 <td></td>
                 <td>
-                  <FormControl fullWidth size="small">
-                    <CustomSelect
-                      label="Langue"
-                      displayValues={["Français", "Arabe", "Anglais", "Vide"]}
-                      value={langue}
-                      setValue={setLangue}
-                    />
-                  </FormControl>
+                  <CustomSelect
+                    label="Langue"
+                    displayValues={["Français", "Arabe", "Anglais", "Vide"]}
+                    value={langue}
+                    setValue={setLangue}
+                  />
                 </td>
               </tr>
               <tr>
                 <td>
-                  <FormControl fullWidth>
-                    <div className="flex items-center">
-                      <FormLabel className="mr-4">QR Code ?</FormLabel>
-                      <RadioGroup
-                        row={true}
-                        value={qrCode}
-                        onChange={(val) => setQrCode(val.target.value)}>
-                        <FormControlLabel
-                          value="Oui"
-                          control={<Radio />}
-                          label="Oui"
-                        />
-                        <FormControlLabel
-                          value="Non"
-                          control={<Radio />}
-                          label="Non"
-                        />
-                      </RadioGroup>
-                    </div>
-                  </FormControl>
+                  <CustomRadioInline
+                    label="QR Code ?"
+                    getter={qrCode}
+                    setter={setQrCode}>
+                    <RadioOption label="Oui" />
+                    <RadioOption label="Non" />
+                  </CustomRadioInline>
                 </td>
                 <td></td>
                 <td>
