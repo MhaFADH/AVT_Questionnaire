@@ -24,7 +24,7 @@ const PickList = ({
   }
   const open = Boolean(localAnchorEl)
   const id = localAnchorEl ? "simple-popover" : undefined
-  const handleRowSelection = async (newRowSelectionModel) => {
+  const handleRowSelection = (newRowSelectionModel) => {
     setRowSelectionModel(newRowSelectionModel)
   }
 

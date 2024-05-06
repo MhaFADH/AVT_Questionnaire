@@ -120,7 +120,6 @@ module.exports = {
     "no-shadow": "error",
     "no-throw-literal": "error",
     "no-undef-init": "error",
-    "no-undefined": "error",
     "no-underscore-dangle": ["error", { allowFunctionParams: false }],
     "no-unneeded-ternary": ["error", { defaultAssignment: false }],
     "no-unused-expressions": ["warn", { enforceForJSX: true }],
