@@ -1,7 +1,7 @@
-import { TiPlus } from "react-icons/ti";
-import { TextField, Popover } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
-import { useState } from "react";
+import { TiPlus } from "react-icons/ti"
+import { TextField, Popover } from "@mui/material"
+import { DataGrid } from "@mui/x-data-grid"
+import { useState } from "react"
 
 const PickList = ({
   value,
@@ -10,27 +10,23 @@ const PickList = ({
   columns,
   concernedCol,
   label,
-  setAnchorEl,
+  setAnchorEl
 }) => {
-  const [rowSelectionModel, setRowSelectionModel] = useState("");
-  const [localAnchorEl, setLocalAnchorEl] = useState("");
-
+  const [rowSelectionModel, setRowSelectionModel] = useState("")
+  const [localAnchorEl, setLocalAnchorEl] = useState("")
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-    setLocalAnchorEl(event.currentTarget);
-  };
-
+    setAnchorEl(event.currentTarget)
+    setLocalAnchorEl(event.currentTarget)
+  }
   const handleClose = () => {
-    setAnchorEl(null);
-    setLocalAnchorEl(null);
-  };
-
-  const open = Boolean(localAnchorEl);
-  const id = localAnchorEl ? "simple-popover" : undefined;
-
+    setAnchorEl(null)
+    setLocalAnchorEl(null)
+  }
+  const open = Boolean(localAnchorEl)
+  const id = localAnchorEl ? "simple-popover" : undefined
   const handleRowSelection = async (newRowSelectionModel) => {
-    setRowSelectionModel(newRowSelectionModel);
-  };
+    setRowSelectionModel(newRowSelectionModel)
+  }
 
   return (
     <div className="flex relative">
@@ -40,8 +36,7 @@ const PickList = ({
         value={value}
         className=" text-black disabled:text-black"
         placeholder={label}
-        fullWidth
-      ></TextField>
+        fullWidth></TextField>
       <TiPlus
         className="rounded-full hover:bg-slate-100 hover:cursor-pointer hover:animate-pulse absolute right-3 top-2.5"
         onClick={handleClick}
@@ -56,16 +51,15 @@ const PickList = ({
         sx={{
           display: "flex",
           justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+          alignItems: "center"
+        }}>
         <div style={{ height: 300, width: "100%" }}>
           <DataGrid
             rowSelectionModel={rowSelectionModel}
             onRowSelectionModelChange={async (newRowSelectionModel) => {
-              await handleRowSelection(newRowSelectionModel);
-              setValue(data[newRowSelectionModel - 1][concernedCol]);
-              handleClose();
+              await handleRowSelection(newRowSelectionModel)
+              setValue(data[newRowSelectionModel - 1][concernedCol])
+              handleClose()
             }}
             rows={data}
             columns={columns}
@@ -73,7 +67,7 @@ const PickList = ({
         </div>
       </Popover>
     </div>
-  );
-};
+  )
+}
 
-export default PickList;
+export default PickList

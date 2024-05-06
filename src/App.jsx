@@ -1,12 +1,13 @@
 import { useState } from "react"
-import CustomSelect from "./components/CustomSelect"
-import PickListUsers from "./components/PickListUsers"
+import CustomSelect from "./components/ExtendSelect"
+import PickListUsers from "./components/ExtendPickListUsers"
 import clsx from "clsx"
-import CustomTextField from "./components/CustomTextField"
-import CustomNumberField from "./components/CustomNumberField"
-import UploadField from "./components/UploadField"
-import CustomRadioInline from "./components/CustomRadioInline"
-import RadioOption from "./components/RadioOption"
+import CustomTextField from "./components/ExtendTextField"
+import CustomNumberField from "./components/ExtendNumberField"
+import UploadField from "./components/ExtendUploadField"
+import CustomRadioInline from "./components/ExtendRadioInline"
+import RadioOption from "./components/ExtendRadioOption"
+import FormDesigner from "./components/FormDesigner/FormDesigner"
 
 const GridRowsProp = [
   { id: 1, col1: "User 1" },
@@ -23,6 +24,7 @@ const GridRowsProp = [
 const GridColDef = [{ field: "col1", headerName: "Users", width: 150 }]
 
 function App() {
+  const [editState, setEditState] = useState(false)
   const [modelUtil, setModelUtil] = useState("")
   const [typeQuest, setTypeQuest] = useState("")
   const [txtEntete, setTxtEntete] = useState("")
@@ -44,10 +46,12 @@ function App() {
       )}>
       <div className="rounded-2xl m-16 bg-gray-100">
         <div className="m-16">
-          <table className=" text-center" cellPadding={5} width="100%">
+          <table className=" text-center w-full" cellPadding="5">
             <tbody>
               <tr className=" font-semibold text-left text-2xl">
-                <td colSpan="3">Détail</td>
+                <th>Détail</th>
+                <th></th>
+                <th className="flex">Détail</th>
               </tr>
               <tr>
                 <td valign="top" width="49%"></td>
@@ -180,6 +184,9 @@ function App() {
               </tr>
             </tbody>
           </table>
+          <div className="m16">
+            <FormDesigner />
+          </div>
         </div>
       </div>
     </div>
