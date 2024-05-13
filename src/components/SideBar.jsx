@@ -4,13 +4,17 @@ import { PiPaintBrushDuotone } from "react-icons/pi"
 import { GrDocumentConfig } from "react-icons/gr"
 import { IoIosPhonePortrait } from "react-icons/io"
 
-const SideBar = ({ getter, setter }) => (
-  <div className="flex flex-col w-30 h-screen bg-white font-medium text-sm items-center shadow-xl">
+const SideBar = ({ getter, setter, className }) => (
+  <div
+    className={clsx(
+      "flex flex-col w-30 h-screen bg-white font-medium text-sm items-center shadow-xl",
+      className
+    )}>
     <div className="flex flex-col items-center mt-10">
       <div
         className={clsx(
-          "flex flex-col text-primary items-center justify-center w-full p-3 hover:bg-slate-100 hover:cursor-pointer",
-          getter === "configuration" && "bg-slate-100"
+          "flex flex-col text-primary items-center justify-center w-full p-3 hover:bg-active hover:cursor-pointer",
+          getter === "configuration" && "bg-active"
         )}
         onClick={() => setter("configuration")}>
         <GrDocumentConfig
@@ -22,8 +26,8 @@ const SideBar = ({ getter, setter }) => (
       </div>
       <div
         className={clsx(
-          "flex flex-col text-primary items-center justify-center w-full p-3 hover:bg-slate-100 hover:cursor-pointer",
-          getter === "conception" && "bg-slate-100"
+          "flex flex-col text-primary items-center justify-center w-full p-3 hover:bg-active hover:cursor-pointer",
+          getter === "conception" && "bg-active"
         )}
         onClick={() => setter("conception")}>
         <PiPaintBrushDuotone
@@ -35,8 +39,8 @@ const SideBar = ({ getter, setter }) => (
       </div>
       <div
         className={clsx(
-          "flex flex-col text-primary items-center justify-center w-full p-3 hover:bg-slate-100 hover:cursor-pointer",
-          getter === "recapitulatif" && "bg-slate-100"
+          "flex flex-col text-primary items-center justify-center w-full p-3 hover:bg-active hover:cursor-pointer",
+          getter === "recapitulatif" && "bg-active"
         )}
         onClick={() => setter("recapitulatif")}>
         <IoIosPhonePortrait

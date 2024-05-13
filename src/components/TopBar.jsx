@@ -1,15 +1,40 @@
 import React from "react"
 import { FiSave } from "react-icons/fi"
-import colors from "../colors"
+import clsx from "clsx"
+import { FaCogs, FaEye, FaEyeSlash } from "react-icons/fa"
+import { useAppContext } from "./AppContext"
+import ExtendDivider from "./fields/ExtendDivider"
+import ExtendButton from "./fields/ExtendButton"
 
-const TopBar = () => {
+const TopBar = ({ className }) => {
+  const {
+    reducer: { dispatch }
+  } = useAppContext()
+
   return (
-    <div className="flex items-center w-full h-20 shadow-sm">
-      <button
-        className={`flex items-center text-primary font-medium ml-20 p-2 rounded-md active:bg-[${colors.active}]  hover:cursor-pointer`}>
+    <div className={clsx("flex items-center w-full h-20 shadow-sm", className)}>
+      <ExtendButton
+        label="Enregistrer"
+        className="ml-10"
+        onClick={() => dispatch("save")}>
         <FiSave className="mr-1" />
-        <span>Enregistrer</span>
-      </button>
+      </ExtendButton>
+      <ExtendDivider />
+      <ExtendButton label="Outils" onClick={() => dispatch("tools")}>
+        <FaCogs className="mr-1" />
+      </ExtendButton>
+      <ExtendDivider />
+      <ExtendButton
+        label="Règles conditionnelles"
+        onClick={() => dispatch("conditionnalRules")}>
+        <FaEyeSlash className="mr-1" />
+      </ExtendButton>
+      <ExtendDivider />
+      <ExtendButton
+        label="Visualiser en ligne"
+        onClick={() => dispatch("showOnline")}>
+        <FaEye className="mr-1" />
+      </ExtendButton>
     </div>
   )
 }
