@@ -4,14 +4,15 @@ import { BiChevronDown, BiChevronUp } from "react-icons/bi"
 import { FaTrashCan } from "react-icons/fa6"
 import { LuGripVertical } from "react-icons/lu"
 
-const ExtendPage = ({ pageNumber, dispatch, ...otherProps }) => {
+const ExtendPage = ({ value, dispatch, ...otherProps }) => {
   const [chevronState, setChevronState] = useState(false)
   const control = useDragControls()
+  const pageNumber = value.id
 
   return (
     <Reorder.Item
       key={pageNumber}
-      value={pageNumber}
+      value={value}
       dragListener={false}
       dragControls={control}>
       <div

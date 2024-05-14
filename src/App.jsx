@@ -22,7 +22,7 @@ function App() {
         />
         <div className="flex flex-col w-full h-screen bg-secondary">
           <TopBar className="bg-white" />
-          <div className="bg-transparent rounded-xl h-screen w-100% mt-7 ml-7 mb-7">
+          <div className="bg-transparent rounded-xl h-screen w-100% m-7">
             {component === "conception" && <Conception />}
             {component === "configuration" && <Configuration />}
             {component === "recapitulatif" && <Recapitulatif />}

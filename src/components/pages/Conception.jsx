@@ -14,13 +14,13 @@ const Conception = () => {
 
   return (
     <div className="flex">
-      <div className="flex flex-col w-2/3 space-y-4">
+      <div className="flex flex-col space-y-4 w-2/3">
         <Reorder.Group
           values={pages}
           onReorder={handleUpdate}
           className=" space-y-4">
           {pages.map((page) => (
-            <ExtendPage key={page} pageNumber={page} dispatch={dispatch} />
+            <ExtendPage value={page} key={page.id} dispatch={dispatch} />
           ))}
         </Reorder.Group>
         <button
@@ -29,7 +29,6 @@ const Conception = () => {
           Ajouter une page
         </button>
       </div>
-      <div className="mx-7 rounded-md w-1/3 bg-primary">Device spot</div>
     </div>
   )
 }
