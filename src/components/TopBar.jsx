@@ -16,23 +16,23 @@ const TopBar = ({ className }) => {
       <ExtendButton
         label="Enregistrer"
         className="ml-10"
-        onClick={() => dispatch("save")}>
+        onClick={() => dispatch({ type: "save" })}>
         <FiSave className="mr-1" />
       </ExtendButton>
       <ExtendDivider />
-      <ExtendButton label="Outils" onClick={() => dispatch("tools")}>
+      <ExtendButton label="Outils" onClick={() => dispatch({ type: "tools" })}>
         <FaCogs className="mr-1" />
       </ExtendButton>
       <ExtendDivider />
       <ExtendButton
         label="Règles conditionnelles"
-        onClick={() => dispatch("conditionnalRules")}>
+        onClick={() => dispatch({ type: "conditionnalRules" })}>
         <FaEyeSlash className="mr-1" />
       </ExtendButton>
       <ExtendDivider />
       <ExtendButton
         label="Visualiser en ligne"
-        onClick={() => dispatch("showOnline")}>
+        onClick={() => dispatch({ type: "showOnline" })}>
         <FaEye className="mr-1" />
       </ExtendButton>
     </div>

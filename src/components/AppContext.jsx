@@ -3,13 +3,19 @@ import save from "../handlers/save"
 import tools from "../handlers/tools"
 import showOnline from "../handlers/show-online"
 import conditionnalRules from "../handlers/conditionnal-rules"
+import addPage from "../handlers/add-page"
+import removePage from "../handlers/remove-page"
 
 const AppContext = createContext()
 const initState = {
-  isEdit: false
+  isEdit: false,
+  pages: [],
+  pageCounter: 0
 }
 const reducer = (state, action) => {
-  switch (action) {
+  const { type, payload } = action
+
+  switch (type) {
     case "save":
       return save(state)
 
@@ -21,6 +27,12 @@ const reducer = (state, action) => {
 
     case "conditionnalRules":
       return conditionnalRules(state)
+
+    case "addPage":
+      return addPage(state)
+
+    case "removePage":
+      return removePage(state, payload)
 
     default:
       return { ...state }
