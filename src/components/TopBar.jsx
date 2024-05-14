@@ -12,7 +12,11 @@ const TopBar = ({ className }) => {
   } = useAppContext()
 
   return (
-    <div className={clsx("flex items-center w-full h-20 shadow-sm", className)}>
+    <div
+      className={clsx(
+        "flex items-center w-full h-20 shadow-sm select-none",
+        className
+      )}>
       <ExtendButton
         label="Enregistrer"
         className="ml-10"

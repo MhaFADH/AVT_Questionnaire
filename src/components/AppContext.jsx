@@ -5,6 +5,7 @@ import showOnline from "../handlers/show-online"
 import conditionnalRules from "../handlers/conditionnal-rules"
 import addPage from "../handlers/add-page"
 import removePage from "../handlers/remove-page"
+import updatePages from "../handlers/update-pages"
 
 const AppContext = createContext()
 const initState = {
@@ -33,6 +34,9 @@ const reducer = (state, action) => {
 
     case "removePage":
       return removePage(state, payload)
+
+    case "setNewPagesArray":
+      return updatePages(state, payload)
 
     default:
       return { ...state }
