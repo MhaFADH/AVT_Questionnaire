@@ -10,7 +10,6 @@ const ExtendPage = ({ value, dispatch, ...otherProps }) => {
   const control = useDragControls()
   const pageNumber = value.id
 
-  console.log("value", value)
   return (
     <Reorder.Item
       key={pageNumber}
@@ -18,7 +17,7 @@ const ExtendPage = ({ value, dispatch, ...otherProps }) => {
       dragListener={false}
       dragControls={control}>
       <div
-        className="flex items-center justify-between h-14 bg-primary rounded-md select-none"
+        className="flex items-center justify-between h-14 bg-primary rounded-lg select-none shadow-md"
         {...otherProps}>
         <div className="flex items-center ml-8 text-maintheme font-medium text-lg">
           <LuGripVertical

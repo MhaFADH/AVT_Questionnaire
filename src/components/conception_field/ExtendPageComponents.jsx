@@ -1,9 +1,8 @@
 import React, { useState } from "react"
-import { useAppContext } from "../AppContext"
 import FieldSelectionModal from "../FieldSelectionModal"
 import clsx from "clsx"
 
-const ExtendPageComponents = ({ page, dispatch, ...otherProps }) => {
+const ExtendPageComponents = ({ page, ...otherProps }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
@@ -16,6 +15,11 @@ const ExtendPageComponents = ({ page, dispatch, ...otherProps }) => {
             Ajouter un champ
           </button>
         )}
+        {page.fields.map((field) => (
+          <div key={field.id} className="bg-quaternary w-full h-14 shadow-md">
+            {field.type}
+          </div>
+        ))}
       </div>
 
       <FieldSelectionModal
@@ -25,6 +29,7 @@ const ExtendPageComponents = ({ page, dispatch, ...otherProps }) => {
         )}
         isModalOpen={isModalOpen}
         closeModal={() => setIsModalOpen(false)}
+        pageId={page.id}
       />
     </>
   )

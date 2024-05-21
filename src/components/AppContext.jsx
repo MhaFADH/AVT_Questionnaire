@@ -6,6 +6,7 @@ import conditionnalRules from "../handlers/conditionnal-rules"
 import addPage from "../handlers/add-page"
 import removePage from "../handlers/remove-page"
 import updatePages from "../handlers/update-pages"
+import addField from "../handlers/add-field"
 
 const AppContext = createContext()
 const initState = {
@@ -37,6 +38,9 @@ const reducer = (state, action) => {
 
     case "setNewPagesArray":
       return updatePages(state, payload)
+
+    case "addField":
+      return addField(state, payload)
 
     default:
       return { ...state }

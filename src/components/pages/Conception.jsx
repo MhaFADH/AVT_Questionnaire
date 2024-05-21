@@ -1,7 +1,6 @@
 import ExtendPage from "../conception_field/ExtendPage"
 import { useAppContext } from "../AppContext"
-import { Reorder, useDragControls } from "framer-motion"
-import clsx from "clsx"
+import { Reorder } from "framer-motion"
 
 const Conception = () => {
   const {
