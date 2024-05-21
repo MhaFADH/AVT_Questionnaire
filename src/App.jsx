@@ -5,6 +5,7 @@ import { useAppContext } from "./components/AppContext"
 import Conception from "./components/pages/Conception"
 import Configuration from "./components/pages/Configuration"
 import Recapitulatif from "./components/pages/Recapitulatif"
+import clsx from "clsx"
 
 function App() {
   const [component, setComponent] = useState("configuration")
@@ -13,7 +14,7 @@ function App() {
   } = useAppContext()
 
   return (
-    <div className="bg-secondary h-screen">
+    <div className="bg-secondary h-screen relative">
       <div className="flex h-screen">
         <SideBar
           className=" bg-white"

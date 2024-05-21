@@ -1,6 +1,7 @@
 import ExtendPage from "../conception_field/ExtendPage"
 import { useAppContext } from "../AppContext"
 import { Reorder, useDragControls } from "framer-motion"
+import clsx from "clsx"
 
 const Conception = () => {
   const {
@@ -14,7 +15,7 @@ const Conception = () => {
 
   return (
     <div className="flex">
-      <div className="flex flex-col space-y-4 w-2/3">
+      <div className="flex flex-col space-y-4 w-full">
         <Reorder.Group
           values={pages}
           onReorder={handleUpdate}

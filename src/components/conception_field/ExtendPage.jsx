@@ -3,12 +3,14 @@ import { useState } from "react"
 import { BiChevronDown, BiChevronUp } from "react-icons/bi"
 import { FaTrashCan } from "react-icons/fa6"
 import { LuGripVertical } from "react-icons/lu"
+import ExtendPageComponents from "./ExtendPageComponents"
 
 const ExtendPage = ({ value, dispatch, ...otherProps }) => {
   const [chevronState, setChevronState] = useState(false)
   const control = useDragControls()
   const pageNumber = value.id
 
+  console.log("value", value)
   return (
     <Reorder.Item
       key={pageNumber}
@@ -43,6 +45,9 @@ const ExtendPage = ({ value, dispatch, ...otherProps }) => {
           </button>
         </div>
       </div>
+      {chevronState && (
+        <ExtendPageComponents page={value} dispatch={dispatch} />
+      )}
     </Reorder.Item>
   )
 }

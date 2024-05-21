@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react"
+import { createContext, useContext, useReducer, useState } from "react"
 import save from "../handlers/save"
 import tools from "../handlers/tools"
 import showOnline from "../handlers/show-online"
@@ -45,12 +45,14 @@ const reducer = (state, action) => {
 
 export const AppContextProvider = (props) => {
   const [mainState, dispatch] = useReducer(reducer, initState)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <AppContext.Provider
       {...props}
       value={{
-        reducer: { mainState, dispatch }
+        reducer: { mainState, dispatch },
+        blurState: { isModalOpen, setIsModalOpen }
       }}
     />
   )
