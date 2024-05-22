@@ -23,7 +23,7 @@ const FieldSelectionModal = ({
       <div
         className={clsx(
           "bg-maintheme rounded-md transition-all select-none h-1/2 w-1/4 px-10 py-7 space-y-4 flex flex-col items-center text-center",
-          isModalOpen ? "scale-100 opcaity-100" : "scale-125 opacity-0"
+          isModalOpen ? "scale-100 opacity-100" : "scale-125 opacity-0"
         )}
         onClick={(e) => e.stopPropagation()}
         {...otherProps}>

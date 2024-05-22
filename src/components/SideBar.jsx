@@ -7,7 +7,7 @@ import { IoIosPhonePortrait } from "react-icons/io"
 const SideBar = ({ getter, setter, className }) => (
   <div
     className={clsx(
-      "flex flex-col w-30 h-screen bg-maintheme font-medium text-sm items-center shadow-xl z-10 select-none",
+      "flex flex-col w-30 h-full bg-maintheme font-medium text-sm items-center shadow-xl z-10 select-none",
       className
     )}>
     <div className="flex flex-col items-center mt-10">

@@ -165,7 +165,6 @@ module.exports = {
     "line-comment-position": ["error", { position: "above" }],
     // recommended rules overwrite
     indent: "off",
-    "linebreak-style": ["error", "unix"],
     "newline-before-return": "error",
     "no-undef": "error",
     "padded-blocks": ["error", "never"],

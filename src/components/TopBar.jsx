@@ -14,7 +14,7 @@ const TopBar = ({ className }) => {
   return (
     <div
       className={clsx(
-        "flex items-center w-full h-20 shadow-sm select-none",
+        "flex items-center w-full min-h-20 shadow-sm select-none",
         className
       )}>
       <ExtendButton
