@@ -7,14 +7,9 @@ const ExtendPageComponents = ({ page, ...otherProps }) => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center bg-transparent m-4 rounded-md select-none">
-        {page.fields.length === 0 && (
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="w-1/2 bg-tertiary rounded-md h-14 border-tertiary text-maintheme select-none  font-medium">
-            Ajouter un champ
-          </button>
-        )}
+      <div
+        className="flex flex-col items-center justify-center bg-transparent m-4 rounded-md select-none"
+        {...otherProps}>
         {page.fields.map((field) => (
           <div key={field.id} className="bg-quaternary w-full h-14 shadow-md">
             {field.type}

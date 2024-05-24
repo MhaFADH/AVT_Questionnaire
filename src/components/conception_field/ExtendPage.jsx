@@ -4,11 +4,15 @@ import { BiChevronDown, BiChevronUp } from "react-icons/bi"
 import { FaTrashCan } from "react-icons/fa6"
 import { LuGripVertical } from "react-icons/lu"
 import ExtendPageComponents from "./ExtendPageComponents"
+import { useAppContext } from "../AppContext"
 
-const ExtendPage = ({ value, dispatch, ...otherProps }) => {
+const ExtendPage = ({ value, index, ...otherProps }) => {
   const [chevronState, setChevronState] = useState(false)
   const control = useDragControls()
   const pageNumber = value.id
+  const {
+    reducer: { mainState, dispatch }
+  } = useAppContext()
 
   return (
     <Reorder.Item
@@ -18,6 +22,7 @@ const ExtendPage = ({ value, dispatch, ...otherProps }) => {
       dragControls={control}>
       <div
         className="flex items-center justify-between h-14 bg-primary rounded-lg select-none shadow-md"
+        data-index={index}
         {...otherProps}>
         <div className="flex items-center ml-8 text-maintheme font-medium text-lg">
           <LuGripVertical
@@ -28,13 +33,15 @@ const ExtendPage = ({ value, dispatch, ...otherProps }) => {
           Page {pageNumber}
         </div>
         <div className="mr-8 flex items-center text-maintheme">
-          <button
-            className="mr-2 hover:text-active"
-            onClick={() =>
-              dispatch({ type: "removePage", payload: { pageNumber } })
-            }>
-            <FaTrashCan size={25} />
-          </button>
+          {mainState.pages.length > 1 && (
+            <button
+              className="mr-2 hover:text-active"
+              onClick={() =>
+                dispatch({ type: "removePage", payload: { pageNumber } })
+              }>
+              <FaTrashCan size={25} />
+            </button>
+          )}
           <button onClick={() => setChevronState(!chevronState)}>
             {chevronState ? (
               <BiChevronUp size={40} />

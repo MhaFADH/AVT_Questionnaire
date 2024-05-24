@@ -7,12 +7,19 @@ import addPage from "../handlers/add-page"
 import removePage from "../handlers/remove-page"
 import updatePages from "../handlers/update-pages"
 import addField from "../handlers/add-field"
+import addComponent from "../handlers/add-component"
 
 const AppContext = createContext()
 const initState = {
   isEdit: false,
-  pages: [],
-  pageCounter: 0
+  pages: [
+    {
+      id: 1,
+      fields: [],
+      fieldsCounter: 0
+    }
+  ],
+  pageCounter: 1
 }
 const reducer = (state, action) => {
   const { type, payload } = action
@@ -30,17 +37,15 @@ const reducer = (state, action) => {
     case "conditionnalRules":
       return conditionnalRules(state)
 
-    case "addPage":
-      return addPage(state)
-
     case "removePage":
       return removePage(state, payload)
 
     case "setNewPagesArray":
       return updatePages(state, payload)
 
-    case "addField":
-      return addField(state, payload)
+    case "addComponent":
+      console.log("payload", payload)
+      return addComponent(state, payload)
 
     default:
       return { ...state }
