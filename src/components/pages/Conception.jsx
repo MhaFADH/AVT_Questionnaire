@@ -14,26 +14,21 @@ const Conception = () => {
     dispatch({ type: "setNewPagesArray", payload: { newPages } })
   const handlePosition = (e) => {
     e.preventDefault()
-    const elementRect = e.currentTarget.getBoundingClientRect()
-    const scrollTop = window.scrollY || document.documentElement.scrollTop
-    const scrollLeft = window.scrollX || document.documentElement.scrollLeft
-
     const toolbox = document.getElementById("toolbox")
-
-    const top = elementRect.top + scrollTop
-    const left = elementRect.left + scrollLeft
-
-    toolbox.style.position = "absolute"
-    toolbox.style.top = top + "px"
-    toolbox.style.left = left + "px"
+    toolbox.style.top = `${
+      e.currentTarget.getBoundingClientRect().top -
+      toolbox.getBoundingClientRect().height
+    }px`
   }
 
   return (
-    <div className="flex">
-      <div className="flex space-y-4 w-full scroll-smooth mr-4">
-        <div className="flex flex-col justify-center items-center">
-          <div className="sticky top-10 bottom-10 bg-yellow-200" id="toolbox">
-            TOOLBOX
+    <div className="flex" style={{ scrollBehavior: "smooth" }}>
+      <div className="flex space-y-4 w-full mr-4">
+        <div className="flex flex-col items-center w-8 bg-gray-300">
+          <div
+            className="sticky top-0 bg-yellow-200 h-40 w-full transition-all ease-in-out duration-450"
+            id="toolbox">
+            TB TB TB TB TB TB
           </div>
         </div>
         <div className="w-full">
