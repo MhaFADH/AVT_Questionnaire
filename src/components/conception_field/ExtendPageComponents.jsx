@@ -1,21 +1,34 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import FieldSelectionModal from "../FieldSelectionModal"
 import clsx from "clsx"
+import ExtendTextField from "./ExtendTextField"
+import { Reorder } from "framer-motion"
+import { useAppContext } from "../AppContext"
 
-const ExtendPageComponents = ({ page, ...otherProps }) => {
+const ExtendPageComponents = ({ page, pageIndex, ...otherProps }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const {
+    reducer: { dispatch }
+  } = useAppContext()
+  const handleReorder = (newFields) =>
+    dispatch({ type: "reorderFields", payload: { newFields, pageIndex } })
 
   return (
     <>
-      <div
-        className="flex flex-col items-center justify-center bg-transparent m-4 rounded-md select-none"
+      <Reorder.Group
+        values={page.fields}
+        onReorder={handleReorder}
+        className="flex flex-col items-center justify-center bg-transparent m-4 rounded-md select-none space-y-4"
         {...otherProps}>
-        {page.fields.map((field) => (
-          <div key={field.id} className="bg-quaternary w-full h-14 shadow-md">
-            {field.type}
-          </div>
+        {page.fields.map((field, index) => (
+          <ExtendTextField
+            pageIndex={pageIndex}
+            index={index}
+            key={field.id}
+            field={field}
+          />
         ))}
-      </div>
+      </Reorder.Group>
 
       <FieldSelectionModal
         className={clsx(

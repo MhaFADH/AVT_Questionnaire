@@ -1,4 +1,3 @@
-import React from "react"
 import { FiSave } from "react-icons/fi"
 import clsx from "clsx"
 import { FaCogs, FaEye, FaEyeSlash } from "react-icons/fa"

@@ -1,4 +1,3 @@
-/* eslint-disable no-invalid-this */
 import ExtendPage from "../conception_field/ExtendPage"
 import { useAppContext } from "../AppContext"
 import { Reorder } from "framer-motion"
@@ -73,9 +72,16 @@ const Conception = () => {
             className=" space-y-4">
             {pages.map((page, index) => (
               <ExtendPage
+                index={index}
+                toolboxSetter={setToolboxSelection}
                 onClick={(e) =>
                   handlePosition(
-                    { index, id: page.id, component: componentType.PAGE },
+                    {
+                      index,
+                      id: page.id,
+                      component: componentType.PAGE,
+                      pageIndex: index
+                    },
                     e
                   )
                 }
@@ -84,11 +90,6 @@ const Conception = () => {
               />
             ))}
           </Reorder.Group>
-          <button
-            onClick={() => dispatch({ type: "addPage" })}
-            className=" bg-maintheme rounded-md h-14 border-2 border-tertiary border-dashed text-tertiary select-none hover:bg-active w-full my-4">
-            Ajouter une page
-          </button>
         </div>
       </div>
     </div>

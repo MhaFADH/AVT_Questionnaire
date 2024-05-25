@@ -3,11 +3,11 @@ import save from "../handlers/save"
 import tools from "../handlers/tools"
 import showOnline from "../handlers/show-online"
 import conditionnalRules from "../handlers/conditionnal-rules"
-import addPage from "../handlers/add-page"
 import removePage from "../handlers/remove-page"
 import updatePages from "../handlers/update-pages"
-import addField from "../handlers/add-field"
 import addComponent from "../handlers/add-component"
+import updateFields from "../handlers/update-fields"
+import removeField from "../handlers/remove-field"
 
 const AppContext = createContext()
 const initState = {
@@ -44,8 +44,13 @@ const reducer = (state, action) => {
       return updatePages(state, payload)
 
     case "addComponent":
-      console.log("payload", payload)
       return addComponent(state, payload)
+
+    case "reorderFields":
+      return updateFields(state, payload)
+
+    case "removeField":
+      return removeField(state, payload)
 
     default:
       return { ...state }
