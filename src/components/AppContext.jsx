@@ -68,7 +68,12 @@ const reducer = (state, action) => {
 
 export const AppContextProvider = (props) => {
   const [mainState, dispatch] = useReducer(reducer, initState)
-  const [toolboxSelection, setToolboxSelection] = useState({})
+  const [toolboxSelection, setToolboxSelection] = useState({
+    index: 0,
+    id: 1,
+    component: componentType.TEXT,
+    pageIndex: 0
+  })
   const handlePosition = (componentProperties, e) => {
     e.preventDefault()
     setToolboxSelection(componentProperties)
