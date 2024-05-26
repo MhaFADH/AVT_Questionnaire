@@ -8,6 +8,7 @@ import updatePages from "../handlers/update-pages"
 import addComponent from "../handlers/add-component"
 import updateFields from "../handlers/update-fields"
 import removeField from "../handlers/remove-field"
+import { componentType } from "../types"
 
 const AppContext = createContext()
 const initState = {
@@ -15,8 +16,16 @@ const initState = {
   pages: [
     {
       id: 1,
-      fields: [],
-      fieldsCounter: 0
+      fields: [
+        {
+          id: 1,
+          type: componentType.TEXT,
+          label: "Text Field",
+          question: "Question",
+          description: "Description"
+        }
+      ],
+      fieldsCounter: 1
     }
   ],
   pageCounter: 1
@@ -59,14 +68,23 @@ const reducer = (state, action) => {
 
 export const AppContextProvider = (props) => {
   const [mainState, dispatch] = useReducer(reducer, initState)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [toolboxSelection, setToolboxSelection] = useState({})
+  const handlePosition = (componentProperties, e) => {
+    e.preventDefault()
+    setToolboxSelection(componentProperties)
+    const toolbox = document.getElementById("toolbox")
+    toolbox.style.top = `${
+      e.target.getBoundingClientRect().top -
+      toolbox.getBoundingClientRect().height / 1.5
+    }px`
+  }
 
   return (
     <AppContext.Provider
       {...props}
       value={{
         reducer: { mainState, dispatch },
-        blurState: { isModalOpen, setIsModalOpen }
+        toolbox: { toolboxSelection, setToolboxSelection, handlePosition }
       }}
     />
   )

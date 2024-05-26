@@ -1,12 +1,8 @@
-import { useState } from "react"
-import FieldSelectionModal from "../FieldSelectionModal"
-import clsx from "clsx"
 import ExtendTextField from "./ExtendTextField"
 import { Reorder } from "framer-motion"
 import { useAppContext } from "../AppContext"
 
 const ExtendPageComponents = ({ page, pageIndex, ...otherProps }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
   const {
     reducer: { dispatch }
   } = useAppContext()
@@ -29,16 +25,6 @@ const ExtendPageComponents = ({ page, pageIndex, ...otherProps }) => {
           />
         ))}
       </Reorder.Group>
-
-      <FieldSelectionModal
-        className={clsx(
-          "fixed inset-0 flex flex-col items-center justify-center bg-black/20",
-          isModalOpen ? "visible bg-black/20" : "invisible"
-        )}
-        isModalOpen={isModalOpen}
-        closeModal={() => setIsModalOpen(false)}
-        pageId={page.id}
-      />
     </>
   )
 }

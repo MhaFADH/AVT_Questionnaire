@@ -3,7 +3,6 @@ import { useAppContext } from "../AppContext"
 import { Reorder } from "framer-motion"
 import { FaAlignCenter, FaArrowUp19, FaFileCirclePlus } from "react-icons/fa6"
 import { FaCalendarPlus } from "react-icons/fa"
-import { useState } from "react"
 import { componentType } from "../../types"
 
 const styles = {
@@ -11,24 +10,15 @@ const styles = {
     "bg-primary text-maintheme rounded-full p-2 my-2 hover:text-primary hover:bg-maintheme active:bg-active"
 }
 const Conception = () => {
-  const [toolboxSelection, setToolboxSelection] = useState({})
   const {
     reducer: {
       mainState: { pages },
       dispatch
-    }
+    },
+    toolbox: { toolboxSelection, handlePosition }
   } = useAppContext()
   const handleUpdate = (newPages) =>
     dispatch({ type: "setNewPagesArray", payload: { newPages } })
-  const handlePosition = (componentProperties, e) => {
-    e.preventDefault()
-    setToolboxSelection(componentProperties)
-    const toolbox = document.getElementById("toolbox")
-    toolbox.style.top = `${
-      e.target.getBoundingClientRect().top -
-      toolbox.getBoundingClientRect().height / 1.5
-    }px`
-  }
   const handleAddComponent = (componentToAdd) => {
     dispatch({
       type: "addComponent",
@@ -73,7 +63,6 @@ const Conception = () => {
             {pages.map((page, index) => (
               <ExtendPage
                 index={index}
-                toolboxSetter={setToolboxSelection}
                 onClick={(e) =>
                   handlePosition(
                     {

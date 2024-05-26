@@ -6,7 +6,7 @@ import { LuGripVertical } from "react-icons/lu"
 import ExtendPageComponents from "./ExtendPageComponents"
 import { useAppContext } from "../AppContext"
 
-const ExtendPage = ({ value, index, toolboxSetter, ...otherProps }) => {
+const ExtendPage = ({ value, index, ...otherProps }) => {
   const [chevronState, setChevronState] = useState(true)
   const control = useDragControls()
   const pageNumber = value.id

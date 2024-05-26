@@ -5,7 +5,8 @@ import { useAppContext } from "../AppContext"
 const ExtendTextField = ({ field, pageIndex, index }) => {
   const control = useDragControls()
   const {
-    reducer: { dispatch, mainState }
+    reducer: { dispatch, mainState },
+    toolbox: { handlePosition }
   } = useAppContext()
   const handleDelete = () => {
     dispatch({ type: "removeField", payload: { pageIndex, index } })
@@ -17,6 +18,12 @@ const ExtendTextField = ({ field, pageIndex, index }) => {
       value={field}
       dragListener={false}
       dragControls={control}
+      onClick={(e) =>
+        handlePosition(
+          { index, id: field.id, component: field.type, pageIndex },
+          e
+        )
+      }
       className="flex flex-col items-center bg-quaternary w-full shadow-md rounded-xl h-36 relative pt-2">
       <FaGripLines
         size={24}
@@ -31,7 +38,10 @@ const ExtendTextField = ({ field, pageIndex, index }) => {
           onClick={handleDelete}
         />
       )}
-      <div></div>
+      <div>
+        field id: {field.id}
+        <br /> field type: {field.type}
+      </div>
     </Reorder.Item>
   )
 }
