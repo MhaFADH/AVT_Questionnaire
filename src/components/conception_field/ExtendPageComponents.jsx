@@ -1,6 +1,6 @@
-import ExtendTextField from "./ExtendTextField"
 import { Reorder } from "framer-motion"
 import { useAppContext } from "../AppContext"
+import ExtendFieldTemplate from "./ExtendFieldTemplate"
 
 const ExtendPageComponents = ({ page, pageIndex, ...otherProps }) => {
   const {
@@ -17,7 +17,7 @@ const ExtendPageComponents = ({ page, pageIndex, ...otherProps }) => {
         className="flex flex-col items-center justify-center bg-transparent m-4 rounded-md select-none space-y-4"
         {...otherProps}>
         {page.fields.map((field, index) => (
-          <ExtendTextField
+          <ExtendFieldTemplate
             pageIndex={pageIndex}
             index={index}
             key={field.id}

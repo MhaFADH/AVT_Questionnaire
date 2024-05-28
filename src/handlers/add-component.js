@@ -40,6 +40,26 @@ export default (
         question: "Question",
         description: "Description"
       }
+
+      break
+
+    case componentType.NUMBER:
+      field = {
+        id: newState.pages[pageIndex].fieldsCounter,
+        type: componentType.NUMBER,
+        label: "Number Field"
+      }
+
+      break
+
+    case componentType.DATE:
+      field = {
+        id: newState.pages[pageIndex].fieldsCounter,
+        type: componentType.DATE,
+        label: "Date Field"
+      }
+
+      break
   }
 
   if (component === componentType.PAGE) {

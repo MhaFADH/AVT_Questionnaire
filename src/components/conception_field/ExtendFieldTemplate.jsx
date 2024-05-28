@@ -1,8 +1,9 @@
 import { Reorder, useDragControls } from "framer-motion"
 import { FaGripLines, FaXmark } from "react-icons/fa6"
 import { useAppContext } from "../AppContext"
+import { fields } from "../../types"
 
-const ExtendTextField = ({ field, pageIndex, index }) => {
+const ExtendFieldTemplate = ({ field, pageIndex, index }) => {
   const control = useDragControls()
   const {
     reducer: { dispatch, mainState },
@@ -38,12 +39,9 @@ const ExtendTextField = ({ field, pageIndex, index }) => {
           onClick={handleDelete}
         />
       )}
-      <div>
-        field id: {field.id}
-        <br /> field type: {field.type}
-      </div>
+      <div>{fields[field.type](field, index, pageIndex)}</div>
     </Reorder.Item>
   )
 }
 
-export default ExtendTextField
+export default ExtendFieldTemplate
