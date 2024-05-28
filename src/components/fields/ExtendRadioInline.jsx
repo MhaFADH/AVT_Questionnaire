@@ -1,6 +1,6 @@
 import { FormControl, RadioGroup, FormLabel } from "@mui/material"
 
-const CustomRadioInline = ({ getter, setter, label, ...otherProps }) => (
+const ExtendRadioInline = ({ getter, setter, label, ...otherProps }) => (
   <>
     <FormControl fullWidth>
       <div className="flex items-center">
@@ -17,4 +17,4 @@ const CustomRadioInline = ({ getter, setter, label, ...otherProps }) => (
   </>
 )
 
-export default CustomRadioInline
+export default ExtendRadioInline

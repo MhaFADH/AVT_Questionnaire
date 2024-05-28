@@ -1,6 +1,6 @@
 import { FormControlLabel, Radio } from "@mui/material"
 
-const RadioOption = ({ label, value = null }) => (
+const ExtendRadioOption = ({ label, value = null }) => (
   <>
     <FormControlLabel
       value={value ?? label}
@@ -10,4 +10,4 @@ const RadioOption = ({ label, value = null }) => (
   </>
 )
 
-export default RadioOption
+export default ExtendRadioOption

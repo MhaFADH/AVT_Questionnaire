@@ -14,9 +14,16 @@ export default (
         {
           id: 1,
           type: componentType.TEXT,
-          label: "Text Field",
-          question: "Question",
-          description: "Description"
+          label: "",
+          labelLabel: "Label",
+          labelPlaceholder: "Veuillez saisir un label",
+          question: "",
+          questionLabel: "Question",
+          questionPlaceholder: "Veuillez saisir une question",
+          description: "",
+          descriptionLabel: "Description",
+          descriptionPlaceholder: "Veuillez saisir une description",
+          mandatory: false
         }
       ],
       fieldsCounter: 1
@@ -36,9 +43,16 @@ export default (
       field = {
         id: newState.pages[pageIndex].fieldsCounter,
         type: componentType.TEXT,
-        label: "Text Field",
-        question: "Question",
-        description: "Description"
+        label: "",
+        labelLabel: "Label",
+        labelPlaceholder: "Veuillez saisir un label",
+        question: "",
+        questionLabel: "Question",
+        questionPlaceholder: "Veuillez saisir une question",
+        description: "",
+        descriptionLabel: "Description",
+        descriptionPlaceholder: "Veuillez saisir une description",
+        mandatory: false
       }
 
       break
@@ -47,7 +61,8 @@ export default (
       field = {
         id: newState.pages[pageIndex].fieldsCounter,
         type: componentType.NUMBER,
-        label: "Number Field"
+        label: "Number Field",
+        mandatory: false
       }
 
       break
@@ -56,7 +71,8 @@ export default (
       field = {
         id: newState.pages[pageIndex].fieldsCounter,
         type: componentType.DATE,
-        label: "Date Field"
+        label: "Date Field",
+        mandatory: false
       }
 
       break

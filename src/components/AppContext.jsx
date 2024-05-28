@@ -1,14 +1,6 @@
 import { createContext, useContext, useReducer, useState } from "react"
-import save from "../handlers/save"
-import tools from "../handlers/tools"
-import showOnline from "../handlers/show-online"
-import conditionnalRules from "../handlers/conditionnal-rules"
-import removePage from "../handlers/remove-page"
-import updatePages from "../handlers/update-pages"
-import addComponent from "../handlers/add-component"
-import updateFields from "../handlers/update-fields"
-import removeField from "../handlers/remove-field"
 import { componentType } from "../types"
+import reducerActions from "../reducer-actions"
 
 const AppContext = createContext()
 const initState = {
@@ -20,9 +12,16 @@ const initState = {
         {
           id: 1,
           type: componentType.TEXT,
-          label: "Text Field",
-          question: "Question",
-          description: "Description"
+          label: "",
+          labelLabel: "Label",
+          labelPlaceholder: "Veuillez saisir un label",
+          question: "",
+          questionLabel: "Question",
+          questionPlaceholder: "Veuillez saisir une question",
+          description: "",
+          descriptionLabel: "Description",
+          descriptionPlaceholder: "Veuillez saisir une description",
+          mandatory: false
         }
       ],
       fieldsCounter: 1
@@ -33,37 +32,7 @@ const initState = {
 const reducer = (state, action) => {
   const { type, payload } = action
 
-  switch (type) {
-    case "save":
-      return save(state)
-
-    case "tools":
-      return tools(state)
-
-    case "showOnline":
-      return showOnline(state)
-
-    case "conditionnalRules":
-      return conditionnalRules(state)
-
-    case "removePage":
-      return removePage(state, payload)
-
-    case "setNewPagesArray":
-      return updatePages(state, payload)
-
-    case "addComponent":
-      return addComponent(state, payload)
-
-    case "reorderFields":
-      return updateFields(state, payload)
-
-    case "removeField":
-      return removeField(state, payload)
-
-    default:
-      return { ...state }
-  }
+  return reducerActions[type](state, payload)
 }
 
 export const AppContextProvider = (props) => {

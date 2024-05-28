@@ -1,8 +1,8 @@
 import { TextField } from "@mui/material"
-import React, { useRef } from "react"
+import { useRef } from "react"
 import { MdOutlineFileUpload } from "react-icons/md"
 
-const UploadField = ({ setter, getter }) => {
+const ExtendUploadField = ({ setter, getter }) => {
   const finput = useRef(null)
 
   return (
@@ -33,4 +33,4 @@ const UploadField = ({ setter, getter }) => {
   )
 }
 
-export default UploadField
+export default ExtendUploadField

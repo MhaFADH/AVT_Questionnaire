@@ -3,7 +3,7 @@ import { TextField, Popover, Button } from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid"
 import { useState } from "react"
 
-const PickListUsers = ({
+const ExtendPickListUsers = ({
   value,
   setValue,
   data,
@@ -90,4 +90,4 @@ const PickListUsers = ({
   )
 }
 
-export default PickListUsers
+export default ExtendPickListUsers

@@ -1,7 +1,7 @@
 import { FormControl } from "@mui/base"
 import { TextField } from "@mui/material"
 
-const CustomTextField = ({ getter, setter, label, ...otherProps }) => (
+const ExtendTextField = ({ getter, setter, label, ...otherProps }) => (
   <FormControl>
     <TextField
       fullWidth
@@ -15,4 +15,4 @@ const CustomTextField = ({ getter, setter, label, ...otherProps }) => (
   </FormControl>
 )
 
-export default CustomTextField
+export default ExtendTextField

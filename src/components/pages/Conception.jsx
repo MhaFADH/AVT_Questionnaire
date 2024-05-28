@@ -1,9 +1,7 @@
 import ExtendPage from "../conception_field/ExtendPage"
 import { useAppContext } from "../AppContext"
 import { Reorder } from "framer-motion"
-import { FaAlignCenter, FaArrowUp19, FaFileCirclePlus } from "react-icons/fa6"
-import { FaCalendarPlus } from "react-icons/fa"
-import { componentType } from "../../types"
+import { componentType, typeIcons } from "../../types"
 
 const styles = {
   toolboxButton:
@@ -36,22 +34,22 @@ const Conception = () => {
             <button
               className={styles.toolboxButton}
               onClick={() => handleAddComponent(componentType.TEXT)}>
-              <FaAlignCenter size={25} />
+              {typeIcons[componentType.TEXT]}
             </button>
             <button
               className={styles.toolboxButton}
               onClick={() => handleAddComponent(componentType.NUMBER)}>
-              <FaArrowUp19 size={25} />
+              {typeIcons[componentType.NUMBER]}
             </button>
             <button
               className={styles.toolboxButton}
               onClick={() => handleAddComponent(componentType.DATE)}>
-              <FaCalendarPlus size={25} />
+              {typeIcons[componentType.DATE]}
             </button>
             <button
               className={styles.toolboxButton}
               onClick={() => handleAddComponent(componentType.PAGE)}>
-              <FaFileCirclePlus size={25} />
+              {typeIcons[componentType.PAGE]}
             </button>
           </div>
         </div>

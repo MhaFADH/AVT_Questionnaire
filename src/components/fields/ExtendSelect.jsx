@@ -1,6 +1,6 @@
 import { InputLabel, Select, MenuItem, FormControl } from "@mui/material"
 
-const CustomSelect = ({
+const ExtendSelect = ({
   value,
   setValue,
   displayValues,
@@ -28,4 +28,4 @@ const CustomSelect = ({
   </>
 )
 
-export default CustomSelect
+export default ExtendSelect
