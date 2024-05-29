@@ -19,7 +19,7 @@ const ExtendPageComponents = ({ page, pageIndex, ...otherProps }) => {
         {page.fields.map((field, index) => (
           <ExtendFieldTemplate
             pageIndex={pageIndex}
-            index={index}
+            fieldIndex={index}
             key={field.id}
             field={field}
           />

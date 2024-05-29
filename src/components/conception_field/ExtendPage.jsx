@@ -19,7 +19,10 @@ const ExtendPage = ({ value, index, ...otherProps }) => {
       key={pageNumber}
       value={value}
       dragListener={false}
-      dragControls={control}>
+      dragControls={control}
+      transition={{
+        duration: 0
+      }}>
       <div
         className="flex items-center justify-between h-14 bg-primary rounded-lg select-none shadow-md"
         {...otherProps}>
