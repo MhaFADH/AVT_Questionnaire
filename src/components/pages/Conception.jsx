@@ -9,8 +9,7 @@ const Conception = () => {
     reducer: {
       mainState: { pages },
       dispatch
-    },
-    toolbox: { handlePosition }
+    }
   } = useAppContext()
   const handleUpdate = (newPages) =>
     dispatch({ type: "setNewPagesArray", payload: { newPages } })

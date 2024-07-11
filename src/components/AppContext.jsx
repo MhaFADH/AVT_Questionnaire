@@ -90,6 +90,7 @@ export const AppContextProvider = (props) => {
   }
   useEffect(() => {
     if (mainContainer) {
+      handleScroll()
       mainContainer.current.addEventListener("scroll", handleScroll)
 
       return () => {
@@ -103,7 +104,12 @@ export const AppContextProvider = (props) => {
       {...props}
       value={{
         reducer: { mainState, dispatch },
-        toolbox: { toolboxSelection, setToolboxSelection, handlePosition },
+        toolbox: {
+          toolboxSelection,
+          setToolboxSelection,
+          handlePosition,
+          handleScroll
+        },
         refs: { mainContainer }
       }}
     />

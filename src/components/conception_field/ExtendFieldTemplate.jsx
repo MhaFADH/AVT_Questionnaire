@@ -27,6 +27,9 @@ const ExtendFieldTemplate = ({ field, pageIndex, fieldIndex }) => {
       dragListener={false}
       dragControls={control}
       whileHover={{ scale: 1.01 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
       onClick={(e) => {
         e.stopPropagation()
         handlePosition(

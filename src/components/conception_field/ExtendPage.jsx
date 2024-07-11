@@ -1,4 +1,4 @@
-import { Reorder, useDragControls } from "framer-motion"
+import { delay, Reorder, useDragControls } from "framer-motion"
 import { useRef, useState } from "react"
 import { BiChevronDown, BiChevronUp } from "react-icons/bi"
 import { FaTrashCan } from "react-icons/fa6"
@@ -16,6 +16,17 @@ const ExtendPage = ({ id, value, index, ...otherProps }) => {
     toolbox: { handlePosition }
   } = useAppContext()
   const element = useRef(null)
+  const handleClick = () => {
+    handlePosition(
+      {
+        index,
+        id: value.id,
+        component: componentType.PAGE,
+        pageIndex: index
+      },
+      element.current
+    )
+  }
 
   return (
     <Reorder.Item
@@ -25,20 +36,11 @@ const ExtendPage = ({ id, value, index, ...otherProps }) => {
       value={value}
       dragListener={false}
       dragControls={control}
-      transition={{
-        duration: 0
-      }}
-      onClick={() =>
-        handlePosition(
-          {
-            index,
-            id: value.id,
-            component: componentType.PAGE,
-            pageIndex: index
-          },
-          element.current
-        )
-      }>
+      onClick={handleClick}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, maxHeight: 30 }}
+      exit={{ y: -10, opacity: 0 }}
+      transition={{ duration: 0.5 }}>
       <div
         className="flex items-center justify-between h-14 bg-primary rounded-lg select-none shadow-md"
         {...otherProps}>
@@ -46,7 +48,10 @@ const ExtendPage = ({ id, value, index, ...otherProps }) => {
           <LuGripVertical
             className="mr-2 cursor-move"
             size={25}
-            onPointerDown={(e) => control.start(e)}
+            onPointerDown={(e) => {
+              e.stopPropagation()
+              control.start(e)
+            }}
           />
           Page {pageNumber}
         </div>
@@ -60,7 +65,10 @@ const ExtendPage = ({ id, value, index, ...otherProps }) => {
               <FaTrashCan size={25} />
             </button>
           )}
-          <button onClick={() => setChevronState(!chevronState)}>
+          <button
+            onClick={() => {
+              setChevronState(!chevronState)
+            }}>
             {chevronState ? (
               <BiChevronUp size={40} />
             ) : (
@@ -74,6 +82,7 @@ const ExtendPage = ({ id, value, index, ...otherProps }) => {
           page={value}
           pageIndex={index}
           dispatch={dispatch}
+          animate={{ scale: 1, animationDuration: 10 }}
         />
       )}
     </Reorder.Item>

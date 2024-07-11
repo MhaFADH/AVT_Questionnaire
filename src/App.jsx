@@ -24,7 +24,7 @@ function App() {
           <TopBar className="bg-white" />
           <div
             ref={mainContainer}
-            className="bg-transparent rounded-xl max-h-dvh h-screen overflow-auto w-100% mt-7 mb-7 ml-7 mr-1">
+            className="bg-transparent rounded-xl max-h-dvh h-screen overflow-auto w-100% mt-7 mb-7 ml-7 mr-1 overflow-x-hidden">
             {component === "conception" && <Conception />}
             {component === "configuration" && <Configuration />}
             {component === "recapitulatif" && <Recapitulatif />}
