@@ -1,10 +1,11 @@
 import { Reorder, useDragControls } from "framer-motion"
-import { FaClone, FaGripLines, FaXmark } from "react-icons/fa6"
+import { FaGripLines, FaXmark } from "react-icons/fa6"
 import { useAppContext } from "../AppContext"
 import { fields, typeIcons } from "../../types"
 import { FormControlLabel } from "@mui/material"
 import Switch from "@mui/material/Switch"
 import { FaCopy } from "react-icons/fa"
+import { useRef } from "react"
 
 const ExtendFieldTemplate = ({ field, pageIndex, fieldIndex }) => {
   const control = useDragControls()
@@ -15,20 +16,24 @@ const ExtendFieldTemplate = ({ field, pageIndex, fieldIndex }) => {
   const handleDelete = () => {
     dispatch({ type: "removeField", payload: { pageIndex, fieldIndex } })
   }
+  const element = useRef(null)
 
   return (
     <Reorder.Item
+      id={pageIndex + field.type + field.id}
       key={field.id}
       value={field}
+      ref={element}
       dragListener={false}
       dragControls={control}
       whileHover={{ scale: 1.01 }}
-      onClick={(e) =>
+      onClick={(e) => {
+        e.stopPropagation()
         handlePosition(
           { index: fieldIndex, id: field.id, component: field.type, pageIndex },
-          e
+          element.current
         )
-      }
+      }}
       className="flex flex-col items-center bg-quaternary w-full shadow-md rounded-xl h-1/4 relative pt-2">
       <FaGripLines
         size={24}
@@ -50,9 +55,7 @@ const ExtendFieldTemplate = ({ field, pageIndex, fieldIndex }) => {
       <div className="h-full rounded-b-xl w-full">
         {fields[field.type](field, fieldIndex, pageIndex)}
       </div>
-      <div
-        className="w-full flex justify-end h-12 border-t-2 items-center px-7"
-        onClick={(e) => e.stopPropagation()}>
+      <div className="w-full flex justify-end h-12 border-t-2 items-center px-7">
         <FaCopy
           size={25}
           className="text-primary hover:text-tertiary hover:cursor-pointer"
@@ -65,8 +68,7 @@ const ExtendFieldTemplate = ({ field, pageIndex, fieldIndex }) => {
           control={
             <Switch
               checked={mainState.pages[pageIndex].fields[fieldIndex].mandatory}
-              onClick={(e) => {
-                e.stopPropagation()
+              onClick={() => {
                 dispatch({
                   type: "setMandatory",
                   payload: { pageIndex, fieldIndex }

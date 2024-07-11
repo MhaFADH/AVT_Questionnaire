@@ -1,4 +1,11 @@
-import { createContext, useContext, useReducer, useState } from "react"
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+  useState
+} from "react"
 import { componentType } from "../types"
 import reducerActions from "../reducer-actions"
 
@@ -36,6 +43,7 @@ const reducer = (state, action) => {
 }
 
 export const AppContextProvider = (props) => {
+  const mainContainer = useRef(null)
   const [mainState, dispatch] = useReducer(reducer, initState)
   const [toolboxSelection, setToolboxSelection] = useState({
     index: 0,
@@ -44,21 +52,59 @@ export const AppContextProvider = (props) => {
     pageIndex: 0
   })
   const handlePosition = (componentProperties, e) => {
-    e.preventDefault()
+    const mainContainerRect = mainContainer.current.getBoundingClientRect()
     setToolboxSelection(componentProperties)
     const toolbox = document.getElementById("toolbox")
-    toolbox.style.top = `${
-      e.target.getBoundingClientRect().top -
-      toolbox.getBoundingClientRect().height / 1.5
-    }px`
+    const toolboxRect = toolbox.getBoundingClientRect()
+    const toolboxHalf = toolboxRect.height / 2
+
+    if (
+      mainContainerRect.bottom <
+      e.getBoundingClientRect().top + toolboxRect.height
+    ) {
+      toolbox.style.top = `${mainContainerRect.height - toolboxHalf}px`
+
+      return
+    }
+
+    if (mainContainerRect.top > e.getBoundingClientRect().top) {
+      toolbox.style.top = `${mainContainerRect.top}px`
+
+      return
+    }
+
+    toolbox.style.top = `${e.getBoundingClientRect().top}px`
   }
+  const handleScroll = () => {
+    const element = document.getElementById(
+      toolboxSelection.pageIndex +
+        toolboxSelection.component +
+        toolboxSelection.id
+    )
+
+    if (!element) {
+      return
+    }
+
+    handlePosition(toolboxSelection, element)
+  }
+  useEffect(() => {
+    if (mainContainer) {
+      mainContainer.current.addEventListener("scroll", handleScroll)
+
+      return () => {
+        mainContainer.current.removeEventListener("scroll", handleScroll)
+      }
+    }
+  }, [toolboxSelection])
 
   return (
     <AppContext.Provider
       {...props}
       value={{
         reducer: { mainState, dispatch },
-        toolbox: { toolboxSelection, setToolboxSelection, handlePosition }
+        toolbox: { toolboxSelection, setToolboxSelection, handlePosition },
+        refs: { mainContainer }
       }}
     />
   )

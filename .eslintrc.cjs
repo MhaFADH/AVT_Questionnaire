@@ -50,7 +50,6 @@ module.exports = {
       { ignoreConsecutiveComments: true }
     ],
     "class-methods-use-this": ["error", { enforceForClassFields: true }],
-    "consistent-return": "error",
     curly: ["error", "all"],
     "default-param-last": "error",
     "dot-notation": "error",
