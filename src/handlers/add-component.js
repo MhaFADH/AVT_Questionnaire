@@ -2,7 +2,7 @@ import { componentType } from "../types"
 
 export default (
   state,
-  { toolboxSelection: { index, id, component, pageIndex }, componentToAdd }
+  { toolboxSelection: { index, component, pageIndex }, componentToAdd }
 ) => {
   const newState = JSON.parse(JSON.stringify(state))
 

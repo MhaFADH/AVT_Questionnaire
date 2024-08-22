@@ -18,6 +18,10 @@ const ExtendFieldTemplate = ({ field, pageIndex, fieldIndex }) => {
   }
   const element = useRef(null)
 
+  if (!mainState.pages[pageIndex]) {
+    console.log({ fromFieldTemplateTHREE: { pageIndex } })
+  }
+
   return (
     <Reorder.Item
       id={pageIndex + field.type + field.id}
@@ -62,15 +66,23 @@ const ExtendFieldTemplate = ({ field, pageIndex, fieldIndex }) => {
         <FaCopy
           size={25}
           className="text-primary hover:text-tertiary hover:cursor-pointer"
-          onClick={() =>
-            dispatch({ type: "copyField", payload: { pageIndex, fieldIndex } })
-          }
+          onClick={(e) => {
+            e.stopPropagation()
+            dispatch({
+              type: "copyField",
+              payload: { pageIndex, fieldIndex }
+            })
+          }}
         />
         <FormControlLabel
+          onClick={(e) => e.stopPropagation()}
           className=""
           control={
             <Switch
-              checked={mainState.pages[pageIndex].fields[fieldIndex].mandatory}
+              checked={
+                mainState.pages[pageIndex].fields[fieldIndex]?.mandatory ??
+                false
+              }
               onClick={() => {
                 dispatch({
                   type: "setMandatory",

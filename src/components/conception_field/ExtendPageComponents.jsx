@@ -8,6 +8,7 @@ const ExtendPageComponents = ({ page, pageIndex, ...otherProps }) => {
   } = useAppContext()
   const handleReorder = (newFields) =>
     dispatch({ type: "reorderFields", payload: { newFields, pageIndex } })
+  console.log({ fromPageComponentTWO: { pageIndex } })
 
   return (
     <>

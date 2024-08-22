@@ -1,6 +1,6 @@
 import ExtendPage from "../conception_field/ExtendPage"
 import { useAppContext } from "../AppContext"
-import { Reorder } from "framer-motion"
+import { Reorder, AnimatePresence } from "framer-motion"
 import { componentType } from "../../types"
 import Toolbox from "../conception_field/Toolbox"
 
@@ -23,14 +23,16 @@ const Conception = () => {
             values={pages}
             onReorder={handleUpdate}
             className=" space-y-4">
-            {pages.map((page, index) => (
-              <ExtendPage
-                id={index + componentType.PAGE + page.id}
-                index={index}
-                value={page}
-                key={page.id}
-              />
-            ))}
+            <AnimatePresence>
+              {pages.map((page, index) => (
+                <ExtendPage
+                  id={index + componentType.PAGE + page.id}
+                  index={index}
+                  value={page}
+                  key={page.id}
+                />
+              ))}
+            </AnimatePresence>
           </Reorder.Group>
         </div>
       </div>

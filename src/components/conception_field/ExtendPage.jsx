@@ -1,6 +1,6 @@
-import { delay, Reorder, useDragControls } from "framer-motion"
+import { Reorder, useDragControls, motion } from "framer-motion"
 import { useRef, useState } from "react"
-import { BiChevronDown, BiChevronUp } from "react-icons/bi"
+import { BiChevronUp } from "react-icons/bi"
 import { FaTrashCan } from "react-icons/fa6"
 import { LuGripVertical } from "react-icons/lu"
 import ExtendPageComponents from "./ExtendPageComponents"
@@ -13,7 +13,7 @@ const ExtendPage = ({ id, value, index, ...otherProps }) => {
   const pageNumber = value.id
   const {
     reducer: { mainState, dispatch },
-    toolbox: { handlePosition }
+    toolbox: { handlePosition, toolboxSelection, setToolboxSelection }
   } = useAppContext()
   const element = useRef(null)
   const handleClick = () => {
@@ -27,6 +27,26 @@ const ExtendPage = ({ id, value, index, ...otherProps }) => {
       element.current
     )
   }
+  const handleDelete = (e) => {
+    e.stopPropagation()
+
+    if (!mainState.pages[toolboxSelection.pageIndex]) {
+      console.info("No page found, swap done !")
+      setToolboxSelection({
+        index: 0,
+        id: mainState.pages[0].id,
+        component: componentType.PAGE,
+        pageIndex: 0
+      })
+    }
+
+    dispatch({
+      type: "removePage",
+      payload: { index }
+    })
+  }
+
+  console.log({ fromPageONE: { pageIndex: index } })
 
   return (
     <Reorder.Item
@@ -37,11 +57,11 @@ const ExtendPage = ({ id, value, index, ...otherProps }) => {
       dragListener={false}
       dragControls={control}
       onClick={handleClick}
+      exit={{ opacity: 0, animationDuration: 0.3 }}
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, maxHeight: 30 }}
-      exit={{ y: -10, opacity: 0 }}
-      transition={{ duration: 0.5 }}>
-      <div
+      animate={{ opacity: 1, animationDuration: 0.5 }}>
+      <motion.div
+        animate={false}
         className="flex items-center justify-between h-14 bg-primary rounded-lg select-none shadow-md"
         {...otherProps}>
         <div className="flex items-center ml-8 text-maintheme font-medium text-lg">
@@ -57,32 +77,25 @@ const ExtendPage = ({ id, value, index, ...otherProps }) => {
         </div>
         <div className="mr-8 flex items-center text-maintheme">
           {mainState.pages.length > 1 && (
-            <button
-              className="mr-2 hover:text-active"
-              onClick={() =>
-                dispatch({ type: "removePage", payload: { index } })
-              }>
+            <button className="mr-2 hover:text-active" onClick={handleDelete}>
               <FaTrashCan size={25} />
             </button>
           )}
-          <button
+          <motion.div
+            animate={{ rotate: chevronState ? 0 : 180 }}
+            className="cursor-pointer"
             onClick={() => {
               setChevronState(!chevronState)
             }}>
-            {chevronState ? (
-              <BiChevronUp size={40} />
-            ) : (
-              <BiChevronDown size={40} />
-            )}
-          </button>
+            <BiChevronUp size={40} />
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
       {chevronState && (
         <ExtendPageComponents
           page={value}
           pageIndex={index}
           dispatch={dispatch}
-          animate={{ scale: 1, animationDuration: 10 }}
         />
       )}
     </Reorder.Item>

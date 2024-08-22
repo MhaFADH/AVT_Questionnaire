@@ -88,13 +88,16 @@ export const AppContextProvider = (props) => {
 
     handlePosition(toolboxSelection, element)
   }
+
   useEffect(() => {
     if (mainContainer) {
       handleScroll()
       mainContainer.current.addEventListener("scroll", handleScroll)
 
       return () => {
-        mainContainer.current.removeEventListener("scroll", handleScroll)
+        if (mainContainer.current) {
+          mainContainer.current.removeEventListener("scroll", handleScroll)
+        }
       }
     }
   }, [toolboxSelection])

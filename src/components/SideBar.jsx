@@ -37,19 +37,6 @@ const SideBar = ({ getter, setter, className }) => (
         />
         Conception
       </div>
-      <div
-        className={clsx(
-          "flex flex-col text-primary items-center justify-center w-full p-3 hover:bg-active hover:cursor-pointer",
-          getter === "recapitulatif" && "bg-active"
-        )}
-        onClick={() => setter("recapitulatif")}>
-        <IoIosPhonePortrait
-          className=" mb-1"
-          color={colors.primary}
-          size={55}
-        />
-        Récapitulatif
-      </div>
     </div>
   </div>
 )
