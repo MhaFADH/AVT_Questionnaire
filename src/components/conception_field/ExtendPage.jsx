@@ -31,7 +31,6 @@ const ExtendPage = ({ id, value, index, ...otherProps }) => {
     e.stopPropagation()
 
     if (!mainState.pages[toolboxSelection.pageIndex]) {
-      console.info("No page found, swap done !")
       setToolboxSelection({
         index: 0,
         id: mainState.pages[0].id,
@@ -45,8 +44,6 @@ const ExtendPage = ({ id, value, index, ...otherProps }) => {
       payload: { index }
     })
   }
-
-  console.log({ fromPageONE: { pageIndex: index } })
 
   return (
     <Reorder.Item

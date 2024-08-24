@@ -19,7 +19,7 @@ const ExtendFieldTemplate = ({ field, pageIndex, fieldIndex }) => {
   const element = useRef(null)
 
   if (!mainState.pages[pageIndex]) {
-    console.log({ fromFieldTemplateTHREE: { pageIndex } })
+    return
   }
 
   return (
