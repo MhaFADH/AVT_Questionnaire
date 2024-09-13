@@ -28,7 +28,10 @@ const initState = {
           description: "",
           descriptionLabel: "Description",
           descriptionPlaceholder: "Veuillez saisir une description",
-          mandatory: false
+          mandatory: false,
+          com: false,
+          comMandatory: false,
+          attachment: false
         }
       ],
       fieldsCounter: 1

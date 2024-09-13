@@ -14,6 +14,8 @@ export default {
       },
       backgroundColor: {
         primary: "#2D3142",
+        lightPrimary: "#424554",
+        darkerPrimary: "#282C3B",
         secondary: "#F9F9F9",
         hover: "#F5F5F5",
         active: "#EBE3E3",

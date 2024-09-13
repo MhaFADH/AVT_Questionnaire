@@ -1,5 +1,6 @@
 import { TextField } from "@mui/material"
 import { useAppContext } from "../../AppContext"
+import DefaultOptions from "../DefaultOptions"
 
 const ExtendTextFieldEdition = ({ fieldProperties, fieldIndex, pageIndex }) => {
   const colProperties = "w-7/12 m-2 flex flex-col items-center space-y-4 p-2"
@@ -38,8 +39,6 @@ const ExtendTextFieldEdition = ({ fieldProperties, fieldIndex, pageIndex }) => {
           className="bg-hover shadow-md"
           onClick={(e) => e.stopPropagation()}
         />
-      </div>
-      <div className={colProperties}>
         <TextField
           fullWidth
           label={fieldProperties.questionLabel}
@@ -49,6 +48,9 @@ const ExtendTextFieldEdition = ({ fieldProperties, fieldIndex, pageIndex }) => {
           className="bg-hover shadow-md"
           onClick={(e) => e.stopPropagation()}
         />
+      </div>
+      <div className={colProperties}>
+        <DefaultOptions pageIndex={pageIndex} fieldIndex={fieldIndex} />
       </div>
     </div>
   )

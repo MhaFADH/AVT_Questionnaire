@@ -2,7 +2,7 @@ import addComponent from "./handlers/add-component"
 import conditionnalRules from "./handlers/conditionnal-rules"
 import copyField from "./handlers/copy-field"
 import editField from "./handlers/edit-field"
-import handleMandatory from "./handlers/handle-mandatory"
+import handleDefaultOption from "./handlers/handle-default-option"
 import removeField from "./handlers/remove-field"
 import removePage from "./handlers/remove-page"
 import save from "./handlers/save"
@@ -21,7 +21,7 @@ export default {
   addComponent: (state, payload) => addComponent(state, payload),
   reorderFields: (state, payload) => updateFields(state, payload),
   removeField: (state, payload) => removeField(state, payload),
-  setMandatory: (state, payload) => handleMandatory(state, payload),
+  setDefaultOption: (state, payload) => handleDefaultOption(state, payload),
   editField: (state, payload) => editField(state, payload),
   copyField: (state, payload) => copyField(state, payload)
 }

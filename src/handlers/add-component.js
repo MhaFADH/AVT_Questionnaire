@@ -23,7 +23,10 @@ export default (
           description: "",
           descriptionLabel: "Description",
           descriptionPlaceholder: "Veuillez saisir une description",
-          mandatory: false
+          mandatory: false,
+          com: false,
+          comMandatory: false,
+          attachment: false
         }
       ],
       fieldsCounter: 1
@@ -52,7 +55,10 @@ export default (
         description: "",
         descriptionLabel: "Description",
         descriptionPlaceholder: "Veuillez saisir une description",
-        mandatory: false
+        mandatory: false,
+        com: false,
+        comMandatory: false,
+        attachment: false
       }
 
       break
@@ -62,7 +68,10 @@ export default (
         id: newState.pages[pageIndex].fieldsCounter,
         type: componentType.NUMBER,
         label: "Number Field",
-        mandatory: false
+        mandatory: false,
+        com: false,
+        comMandatory: false,
+        attachment: false
       }
 
       break
@@ -72,7 +81,10 @@ export default (
         id: newState.pages[pageIndex].fieldsCounter,
         type: componentType.DATE,
         label: "Date Field",
-        mandatory: false
+        mandatory: false,
+        com: false,
+        comMandatory: false,
+        attachment: false
       }
 
       break

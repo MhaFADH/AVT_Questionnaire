@@ -74,26 +74,6 @@ const ExtendFieldTemplate = ({ field, pageIndex, fieldIndex }) => {
             })
           }}
         />
-        <FormControlLabel
-          onClick={(e) => e.stopPropagation()}
-          className=""
-          control={
-            <Switch
-              checked={
-                mainState.pages[pageIndex].fields[fieldIndex]?.mandatory ??
-                false
-              }
-              onClick={() => {
-                dispatch({
-                  type: "setMandatory",
-                  payload: { pageIndex, fieldIndex }
-                })
-              }}
-            />
-          }
-          labelPlacement="start"
-          label="Obligatoire"
-        />
       </div>
     </Reorder.Item>
   )
