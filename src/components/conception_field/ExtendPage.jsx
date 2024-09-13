@@ -56,7 +56,8 @@ const ExtendPage = ({ id, value, index, ...otherProps }) => {
       onClick={handleClick}
       exit={{ opacity: 0, animationDuration: 0.3 }}
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, animationDuration: 0.5 }}>
+      animate={{ opacity: 1, animationDuration: 0.5 }}
+      transition={{ duration: 0 }}>
       <motion.div
         animate={false}
         className="flex items-center justify-between h-14 bg-primary rounded-lg select-none shadow-md"
