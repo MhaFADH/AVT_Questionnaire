@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import SideBar from "./components/SideBar"
 import TopBar from "./components/TopBar"
 import Conception from "./components/pages/Conception"
@@ -7,6 +7,7 @@ import { useAppContext } from "./components/AppContext"
 
 function App() {
   const [component, setComponent] = useState("configuration")
+  const tempRef = useRef(null)
   const {
     refs: { mainContainer }
   } = useAppContext()
@@ -22,7 +23,7 @@ function App() {
         <div className="flex flex-col w-full bg-secondary">
           <TopBar className="bg-white" />
           <div
-            ref={mainContainer}
+            ref={mainContainer ?? tempRef}
             className="bg-transparent rounded-xl max-h-dvh h-screen overflow-auto w-100% mt-7 mb-7 ml-7 mr-1 overflow-x-hidden">
             {component === "conception" && <Conception />}
             {component === "configuration" && <Configuration />}

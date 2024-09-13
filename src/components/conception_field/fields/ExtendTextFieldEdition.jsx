@@ -5,7 +5,7 @@ import DefaultOptions from "../DefaultOptions"
 const ExtendTextFieldEdition = ({ fieldProperties, fieldIndex, pageIndex }) => {
   const colProperties = "w-7/12 m-2 flex flex-col items-center space-y-4 p-2"
   const {
-    reducer: { dispatch, mainState }
+    reducer: { dispatch }
   } = useAppContext()
   const handleFieldContent = (e, name) => {
     dispatch({
@@ -23,6 +23,7 @@ const ExtendTextFieldEdition = ({ fieldProperties, fieldIndex, pageIndex }) => {
       <div className={colProperties}>
         <TextField
           fullWidth
+          name={fieldProperties.labelLabel}
           label={fieldProperties.labelLabel}
           placeholder={fieldProperties.labelPlaceholder}
           value={fieldProperties.label}
@@ -32,6 +33,7 @@ const ExtendTextFieldEdition = ({ fieldProperties, fieldIndex, pageIndex }) => {
         />
         <TextField
           fullWidth
+          name={fieldProperties.labelLabel}
           label={fieldProperties.descriptionLabel}
           placeholder={fieldProperties.descriptionPlaceholder}
           value={fieldProperties.description}
@@ -41,6 +43,7 @@ const ExtendTextFieldEdition = ({ fieldProperties, fieldIndex, pageIndex }) => {
         />
         <TextField
           fullWidth
+          name={fieldProperties.labelLabel}
           label={fieldProperties.questionLabel}
           value={fieldProperties.question}
           placeholder={fieldProperties.questionPlaceholder}

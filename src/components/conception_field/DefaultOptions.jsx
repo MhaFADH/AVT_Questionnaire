@@ -12,33 +12,24 @@ const DefaultOptions = ({ pageIndex, fieldIndex }) => {
       payload: { pageIndex, fieldIndex, field }
     })
   }
+  const fields = [
+    ["mandatory", "Obligatoire"],
+    ["com", "Commentaire"],
+    ["comMandatory", "Commentaire obligatoire"],
+    ["attachment", "Pièce-jointe attendue"]
+  ]
 
   return (
     <div className="w-full flex flex-col items-center space-y-3">
-      <ExtendCheckboxOption
-        valueName={"mandatory"}
-        component={component}
-        label={"Obligatoire"}
-        behavior={() => handleClick("mandatory")}
-      />
-      <ExtendCheckboxOption
-        valueName={"mandatory"}
-        component={component}
-        label={"Commentaire"}
-        behavior={() => handleClick("com")}
-      />
-      <ExtendCheckboxOption
-        valueName={"mandatory"}
-        component={component}
-        label={"Commentaire obligatoire"}
-        behavior={() => handleClick("comMandatory")}
-      />
-      <ExtendCheckboxOption
-        valueName={"mandatory"}
-        component={component}
-        label={"Pièce-jointe attendue"}
-        behavior={() => handleClick("attachment")}
-      />
+      {fields.map((field) => (
+        <ExtendCheckboxOption
+          key={field[0]}
+          valueName={field[0]}
+          component={component}
+          label={field[1]}
+          behavior={() => handleClick(field[0])}
+        />
+      ))}
     </div>
   )
 }

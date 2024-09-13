@@ -2,8 +2,6 @@ import { Reorder, useDragControls } from "framer-motion"
 import { FaGripLines, FaXmark } from "react-icons/fa6"
 import { useAppContext } from "../AppContext"
 import { fields, typeIcons } from "../../types"
-import { FormControlLabel } from "@mui/material"
-import Switch from "@mui/material/Switch"
 import { FaCopy } from "react-icons/fa"
 import { useRef } from "react"
 

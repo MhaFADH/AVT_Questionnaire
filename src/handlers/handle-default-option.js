@@ -1,12 +1,10 @@
-export default (state, { pageIndex, fieldIndex, type }) => {
+export default (state, { pageIndex, fieldIndex, field }) => {
   const newState = JSON.parse(JSON.stringify(state))
-  const base = newState.pages[pageIndex].fields[fieldIndex][type]
+  const base = newState.pages[pageIndex].fields[fieldIndex][field]
+  newState.pages[pageIndex].fields[fieldIndex][field] =
+    !state.pages[pageIndex].fields[fieldIndex][field]
 
-  console.log("base", base)
-  newState.pages[pageIndex].fields[fieldIndex][type] =
-    !state.pages[pageIndex].fields[fieldIndex][type]
-
-  if (type === "com" && !base === false) {
+  if (field === "com" && !base === false) {
     newState.pages[pageIndex].fields[fieldIndex].comMandatory = false
   }
 
